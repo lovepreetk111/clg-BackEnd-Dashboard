@@ -18,13 +18,16 @@ import { FormsModule } from '@angular/forms';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import {FileUploadModule} from 'primeng/fileupload';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { CarouselComponent } from './dashboard/carousel/carousel.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    DataTableComponent
+    DataTableComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import {FileUploadModule} from 'primeng/fileupload';
     RadioButtonModule,
     FormsModule,
     FileUploadModule,
-    HttpClientModule
+    HttpClientModule,
+    ConfirmDialogModule
     
   ],
   providers: [MessageService, ConfirmationService],
