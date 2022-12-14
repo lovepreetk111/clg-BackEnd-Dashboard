@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { FormGroup } from '@angular/forms';
 import { IBannerCarosuelComponent } from '../service/data.interface';
 import { DataService } from '../service/data.service';
 interface Product {
@@ -16,7 +16,6 @@ export class DataTableComponent implements OnInit {
 allBanData:IBannerCarosuelComponent[]=[]
 
 
-
   constructor(private data:DataService) {
   }
   ngOnInit(): void {
@@ -29,6 +28,11 @@ allBanData:IBannerCarosuelComponent[]=[]
           this.allBanData = datas;
         })
       }
+
+      update(data:any){
+          console.log(data)
+      }
+
 }    
 
 

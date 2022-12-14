@@ -1,12 +1,12 @@
 export interface IBannerCarosuelComponent {
     innerData:IinnerData
     background:Ibackground
-    image:Iimage
+    image:Iimage[]
     routeLink:string
-    carouselDetails:IcarouselInfo
-   
+    carouselDetails:IcarouselInfo[]
+    createdAt:string
+    updatedAt:string
 }
-
 export interface IinnerData{
     header:string;
     text:string,
