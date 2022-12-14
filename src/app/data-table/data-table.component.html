@@ -77,6 +77,59 @@
                                 </div>
                             </form>
                         </div>
+                        <!-- <div class="modal-body">
+                            <form action="">
+                                <div>
+                                    <label for="CarouselHeader">Name</label>
+                                    <input type="text" class="CarouselHeader" placeholder="Enter name" name="name" [(ngModel)]="name">
+                                </div>
+                                <div>
+                                    <label for="CarouselHeader">Description</label>
+                                    <input type="text" class="CarouselHeader" placeholder="Enter description" name="description" [(ngModel)]="description">
+                                </div>
+                                <div>
+                                    <label for="CarouselHeader">Header</label>
+                                    <input type="text" class="CarouselHeader" placeholder="Enter header"  name="header" [(ngModel)]="header">
+                                </div>
+                                <div>
+                                    <label for="CarouselHeader">Carousel Text</label>
+                                    <input type="text" class="CarouselHeader" placeholder="Enter carousel text"  name="text" [(ngModel)]="text">
+                                </div>
+                                <div>
+                                    <label for="CarouselHeader">Button Text</label>
+                                    <input type="text" class="CarouselHeader" placeholder="Enter button text"  name="btnText" [(ngModel)]="btnText">
+                                </div>
+            
+                                <div>
+                                    <label for="Image">Background Url</label>
+                                    <button onclick="document.getElementById('getFile').click()">Select an
+                                        Image<br>+</button>
+                                    <input type='file' id="getFile" style="display:none" name="img"  name="backUrl" [(ngModel)]="backUrl">
+                                   </div>
+                                <div>
+                                    <label for="CarouselHeader">Background Alt</label>
+                                    <input type="text" class="CarouselHeader" placeholder="Enter Background alt"  name="backAlt" [(ngModel)]="backAlt">
+                                </div>
+                                <div>
+                                    <label for="Image">Image Url</label>
+                                    <button onclick="document.getElementById('getFile').click()">Select an
+                                        Image<br>+</button>
+                                    <input type='file' id="getFile" style="display:none" name="img"  name="imgUrl" [(ngModel)]="imgUrl">
+                                    </div>
+                                <div>
+                                    <label for="CarouselHeader">Image Alt</label>
+                                    <input type="text" class="CarouselHeader" placeholder="Enter Image alt"  name="imgAlt" [(ngModel)]="imgAlt">
+                                </div>
+                                <div>
+                                    <label for="EventDetail">Created By</label>
+                                    <input type="text" class="EventDetail"  name="createdBy" [(ngModel)]="createdBy">
+                                   </div>
+                                <div>
+                                    <label for="EventDetail">Updated By</label>
+                                    <input type="text" class="EventDetail"  name="updatedBy" [(ngModel)]="updatedBy">
+                                    </div>
+                            </form>
+                        </div> -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Submit</button>
                         </div>
@@ -102,19 +155,19 @@
         </thead>
         <tr *ngFor="let item of allBanData">
             <td><img src="assets/images/usersquare.svg" alt=""></td>
-            <!-- {{allBanData | json}} -->
-            <td>{{item.carouselDetails.name}}</td>
+            <!-- {{item | json}} -->
+            <td>{{item.carouselDetails[0].name}}</td>
+            <td>{{item.createdAt | date:"dd/MM/yyyy"}}</td>
+            <td>{{item.carouselDetails[0].createdBy}}</td>
             <td></td>
-            <td>{{item.carouselDetails.createdBy}}</td>
-            <td></td>
-            <td>{{item.carouselDetails.modifiedBy}}</td>
+            <td>{{item.carouselDetails[0].modifiedBy}}</td>
             <td>
                 <div class="actions">
                     <div class="Edit">
                         <div class="AddFunction">
                             <div class="popupModule">
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn module-button" data-bs-toggle="modal"
+                                <button (click)="update(item)" type="button" class="btn module-button" data-bs-toggle="modal"
                                     data-bs-target="#staticBackdrop3">
                                     <img src="assets/images/Edit.svg" alt="">
                                 </button>
@@ -172,20 +225,21 @@
                                                         <!-- <input type="file" id="img" name="img" accept="image/*" class="BackgroundImage" placeholder="Hellowww"> -->
                                                     </div>
                                                     <div>
-                                                        <label for="CarouselHeader">Image Alt</label>
+                                                        <label for="CarouselHeader">Image Alt</label>
                                                         <input type="text" class="CarouselHeader" placeholder="Enter Background alt">
                                                     </div>
                                                     <div>
-                                                        <label for="EventDetail">Created By</label>
+                                                        <label for="EventDetail">Created By</label>
                                                         <input type="text" class="EventDetail">
                                                         <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
                                                     </div>
                                                     <div>
-                                                        <label for="EventDetail">Updated By</label>
+                                                        <label for="EventDetail">Updated By</label>
                                                         <input type="text" class="EventDetail">
                                                         <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
                                                     </div>
                                                 </form>
+
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"

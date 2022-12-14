@@ -16,5 +16,8 @@ export class DataService {
     return this.http.get<IBannerCarosuelComponent[]>(`${this.apiUrl}bannerData`)
   }
 
+  create(payload:IBannerCarosuelComponent){
+    return this.http.post<IBannerCarosuelComponent>((`${this.apiUrl}bannerData`),payload);
+  }
 }
  
