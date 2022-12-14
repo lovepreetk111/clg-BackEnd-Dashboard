@@ -191,7 +191,42 @@
                             </div>
                         </div>
                     </div>
-                    <button class="Delete"><img src="assets/images/Delete.svg" alt=""></button>
+                    <div class="Delete">
+                        <div class="AddFunction">
+                            <div class="popupModule">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn module-button" data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop">
+                                    <img src="assets/images/Delete.svg" alt="">
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Warning!</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Are you shure you want to Delete this?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary"
+                                                    data-bs-dismiss="modal">YES</button>
+                                                    <button type="button" class="btn btn-danger"
+                                                    data-bs-dismiss="modal">NO</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <input type="checkbox" data-bs-toggle="tooltip" data-bs-placement="right"
                         title="To Display Content on Frontend">
                 </div>
