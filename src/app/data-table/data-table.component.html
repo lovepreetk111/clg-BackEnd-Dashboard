@@ -62,16 +62,16 @@
                                     <!-- <input type="file" id="img" name="img" accept="image/*" class="BackgroundImage" placeholder="Hellowww"> -->
                                 </div>
                                 <div>
-                                    <label for="CarouselHeader">Image Alt</label>
+                                    <label for="CarouselHeader">Image Alt</label>
                                     <input type="text" class="CarouselHeader" placeholder="Enter Background alt">
                                 </div>
                                 <div>
-                                    <label for="EventDetail">Created By</label>
+                                    <label for="EventDetail">Created By</label>
                                     <input type="text" class="EventDetail">
                                     <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
                                 </div>
                                 <div>
-                                    <label for="EventDetail">Updated By</label>
+                                    <label for="EventDetail">Updated By</label>
                                     <input type="text" class="EventDetail">
                                     <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
                                 </div>
@@ -197,7 +197,42 @@
                             </div>
                         </div>
                     </div>
-                    <button class="Delete"><img src="assets/images/Delete.svg" alt=""></button>
+                    <div class="Delete">
+                        <div class="AddFunction">
+                            <div class="popupModule">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn module-button" data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop">
+                                    <img src="assets/images/Delete.svg" alt="">
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Warning!</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Are you shure you want to Delete this?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary"
+                                                    data-bs-dismiss="modal">YES</button>
+                                                    <button type="button" class="btn btn-danger"
+                                                    data-bs-dismiss="modal">NO</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+ 
                     <input type="checkbox" data-bs-toggle="tooltip" data-bs-placement="top"
                         title="To Display Content on Frontend">
                 </div>
