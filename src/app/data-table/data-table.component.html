@@ -63,13 +63,14 @@
                 <th>ACTION</th>
             </tr>
         </thead>
-        <tr>
+        <tr *ngFor="let item of allBanData">
             <td><img src="assets/images/usersquare.svg" alt=""></td>
-            <td>Carousel Name</td>
-            <td>12/12/2022</td>
-            <td>Shubham Todankar</td>
-            <td>13/12/2022</td>
-            <td>Pankag Vishwakarma</td>
+            {{allBanData | json}}
+            <td>{{item.carouselDetails.name}}</td>
+            <!-- <td>{{item.createdOn}}</td> -->
+            <td>{{item.carouselDetails.createdBy}}</td>
+            <!-- <td>{{item.updatedOn}}</td> -->
+            <td>{{item.carouselDetails.modifiedBy}}</td>
             <td>
                 <div class="actions">
                     <div class="Edit">
@@ -95,8 +96,8 @@
                                             <div class="modal-body">
                                                 <form action="">
                                                     <div>
-                                                        <label for="CarouselHeader">Header</label>
-                                                        <input type="text" class="CarouselHeader">
+                                                        <label for="Name">Name</label>
+                                                        <input type="text" id="txtname" name="name">
                                                     </div>
 
                                                     <div>
@@ -126,108 +127,6 @@
                     </div>
                     <button class="Delete"><img src="assets/images/Delete.svg" alt=""></button>
                     <input type="checkbox" data-bs-toggle="tooltip" data-bs-placement="top"
-                        title="To Display Content on Frontend">
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td><img src="assets/images/usersquare.svg" alt=""></td>
-            <td>Carousel Name</td>
-            <td>12/12/2022</td>
-            <td>Shubham Todankar</td>
-            <td>13/12/2022</td>
-            <td>Pankag Vishwakarma</td>
-            <td>
-                <div class="actions">
-                    <div class="Edit">
-                        <div class="AddFunction">
-                            <div class="popupModule">
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn module-button" data-bs-toggle="modal"
-                                    data-bs-target="#staticBackdrop3">
-                                    <img src="assets/images/Edit.svg" alt="">
-                                </button>
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static"
-                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Carousel</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="">
-                                                    <div>
-                                                        <label for="CarouselHeader">Header</label>
-                                                        <input type="text" class="CarouselHeader">
-                                                    </div>
-
-                                                    <div>
-                                                        <label for="Image">Select Image</label>
-                                                        <button
-                                                            onclick="document.getElementById('getFile').click()">Select
-                                                            an Image<br>+</button>
-                                                        <input type='file' id="getFile" style="display:none" name="img">
-                                                        <!-- <input type="file" id="img" name="img" accept="image/*" class="BackgroundImage" placeholder="Hellowww"> -->
-                                                    </div>
-                                                    <div>
-                                                        <label for="EventDetail">Event Detail</label>
-                                                        <input type="text" class="EventDetail">
-                                                        <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Update</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="Delete">
-                        <div class="AddFunction">
-                            <div class="popupModule">
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn module-button" data-bs-toggle="modal"
-                                    data-bs-target="#staticBackdrop">
-                                    <img src="assets/images/Delete.svg" alt="">
-                                </button>
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Warning!</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Are you shure you want to Delete this?</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary"
-                                                    data-bs-dismiss="modal">YES</button>
-                                                    <button type="button" class="btn btn-danger"
-                                                    data-bs-dismiss="modal">NO</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <input type="checkbox" data-bs-toggle="tooltip" data-bs-placement="right"
                         title="To Display Content on Frontend">
                 </div>
             </td>

@@ -8,6 +8,7 @@ import { DataTableComponent } from './data-table/data-table.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselComponent } from './dashboard/carousel/carousel.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,13 +16,15 @@ import { CarouselComponent } from './dashboard/carousel/carousel.component';
     AppComponent,
     DashboardComponent,
     DataTableComponent,
-    CarouselComponent
+    CarouselComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
