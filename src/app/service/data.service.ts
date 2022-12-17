@@ -31,14 +31,14 @@ return this.http.post<IBannerCarosuelComponent>((`${this.apiUrl}bannerData`),dat
 }
 
 updateBanData(data:any, id:string){
-  return this.http.put<IBannerCarosuelComponent[]>((`${this.apiUrl}bannerData/:id`),data)
+  return this.http.put<IBannerCarosuelComponent[]>((`${this.apiUrl}bannerData/`),data)
   .pipe(map((res:any)=>{
     return res
   }))
 }
 
 deleteBanData(id:number){
-  return this.http.delete<IBannerCarosuelComponent[]>(`${this.apiUrl}bannerData/`+id)
+  return this.http.delete<IBannerCarosuelComponent[]>((`${this.apiUrl}bannerData/`)+id)
   .pipe(map((res)=>{
     return res;
   }))

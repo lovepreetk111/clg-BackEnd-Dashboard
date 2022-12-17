@@ -23,66 +23,92 @@
                         <div class="modal-body">
                             <form action="" [formGroup]="formValue">
                                 <div formGroupName="carouselDetails">
+                                    <ng-container formArrayName="0"> 
                                     <label for="CarouselHeader">Name</label>
                                     <input type="text" formControlName="name" class="CarouselHeader"
                                         placeholder="Enter name">
+                                    </ng-container>
                                 </div>
                                 <div formGroupName="carouselDetails">
+                                    <ng-container formArrayName="0"> 
                                     <label for="CarouselHeader">Description</label>
                                     <input type="text" formControlName="description" class="CarouselHeader"
                                         placeholder="Enter description">
+                                    </ng-container>
                                 </div>
+                                
                                 <div formGroupName="innerData">
+                                    <ng-container formArrayName="0"> 
                                     <label for="CarouselHeader">Header</label>
                                     <input type="text" formControlName="header" class="CarouselHeader"
                                         placeholder="Enter header">
+                                    </ng-container>
                                 </div>
+                               
                                 <div formGroupName="innerData">
+                                    <ng-container formArrayName="0"> 
                                     <label for="CarouselHeader">Carousel Text</label>
                                     <input formControlName="text" type="text" class="CarouselHeader"
                                         placeholder="Enter carousel text">
+                                    </ng-container>
                                 </div>
                                 <div formGroupName="innerData">
+                                    <ng-container formArrayName="0"> 
                                     <label for="CarouselHeader">Button Text</label>
                                     <input type="text" formControlName="buttonText" formControlName="text"
                                         class="CarouselHeader" placeholder="Enter button text">
+                                    </ng-container>
                                 </div>
-                                <div formGroupName="background">
+                               <!--  <div formGroupName="background">
+                                    <ng-container formArrayName="0"> 
                                     <label for="Image">Background Url</label>
                                     <button onclick="document.getElementById('getFile').click()">Select an
                                         Image<br>+</button>
                                     <input type='file' formControlName="url" id="getFile" style="display:none"
                                         name="img">
-                                </div>
+                                    </ng-container>
+                                </div> -->
                                 <div formGroupName="background">
+                                    <ng-container formArrayName="0"> 
                                     <label for="CarouselHeader">Background Alt</label>
                                     <input type="text" formControlName="alt" class="CarouselHeader"
                                         placeholder="Enter Background alt">
+                                    </ng-container>
                                 </div>
-                                <div formGroupName="image">
+                               <!--  <div formGroupName="image">
+                                    <ng-container formArrayName="0"> 
                                     <label for="Image">Image Url</label>
                                     <button onclick="document.getElementById('getFile').click()">Select an
                                         Image<br>+</button>
                                     <input type='file' formControlName="url" id="getFile" style="display:none"
                                         name="img">
-                                </div>
+                                    </ng-container>
+                                </div> -->
                                 <div formGroupName="image">
+                                    <ng-container formArrayName="0"> 
                                     <label for="CarouselHeader">Image Alt</label>
                                     <input type="text" formControlName="alt" class="CarouselHeader"
                                         placeholder="Enter Background alt">
+                                    </ng-container>
                                 </div>
                                 <div>
+                                    <ng-container> 
                                     <label for="CarouselHeader">Route Link</label>
                                     <input type="text" formControlName="routeLink" class="CarouselHeader"
                                         placeholder="Enter Background alt">
+                                    </ng-container>
                                 </div>
                                 <div formGroupName="carouselDetails">
+                                    <ng-container formArrayName="0"> 
                                     <label for="EventDetail">Created By</label>
                                     <input type="text" formControlName="createdBy" class="EventDetail">
+                                </ng-container>
                                 </div>
                                 <div formGroupName="carouselDetails">
+                                    <ng-container formArrayName="0"> 
                                     <label for="EventDetail">Updated By</label>
                                     <input type="text" formControlName="modifiedBy" class="EventDetail">
+                                </ng-container>
                                 </div>
                             </form>
                         </div>
@@ -119,42 +145,42 @@
             <td>{{item.carouselDetails[0].modifiedBy}}</td>
             <td>
                 <div class="actions">
-                    <button (click)="update(item)" type="button" class="btn module-button"
-                    data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
+                    <button (click)="editBanData(item)" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop2"  class="btn module-button">
                     <img src="assets/images/Edit.svg" alt="">
                 </button>
                     <div class="Delete">
                         <div class="AddFunction">
                             <div class="popupModule">
                                 <!-- Button trigger modal -->
-                                <button  type="button" class="btn module-button" data-bs-toggle="modal"
+                                <button type="button" class="btn module-button" data-bs-toggle="modal"
                                     data-bs-target="#staticBackdrop">
                                     <img src="assets/images/Delete.svg" alt="">
-                                </button>
+                                </button>   
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Warning!</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Are you shure you want to Delete this?</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary"
-                                                    data-bs-dismiss="modal" (click)="deleteBanData(item)">YES</button>
-                                                <button type="button" class="btn btn-danger"
-                                                    data-bs-dismiss="modal" id="donotdelte">NO</button>
-                                            </div>
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Warning!</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you shure you want to Delete this?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary"
+                                                data-bs-dismiss="modal" (click)="deleteBanData(item)">YES</button>
+                                            <button type="button" class="btn btn-danger"
+                                                data-bs-dismiss="modal" id="donotdelte">NO</button>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>
