@@ -55,7 +55,7 @@
                                 <div formGroupName="innerData">
                                     <ng-container formArrayName="0"> 
                                     <label for="CarouselHeader">Button Text</label>
-                                    <input type="text" formControlName="buttonText" formControlName="text"
+                                    <input type="text" formControlName="buttonText"
                                         class="CarouselHeader" placeholder="Enter button text">
                                     </ng-container>
                                 </div>
@@ -98,22 +98,23 @@
                                         placeholder="Enter Background alt">
                                     </ng-container>
                                 </div>
-                                <div formGroupName="carouselDetails">
+                               <!--  <div formGroupName="carouselDetails">
                                     <ng-container formArrayName="0"> 
                                     <label for="EventDetail">Created By</label>
                                     <input type="text" formControlName="createdBy" class="EventDetail">
                                 </ng-container>
-                                </div>
-                                <div formGroupName="carouselDetails">
+                                </div> -->
+                               <!--  <div formGroupName="carouselDetails">
                                     <ng-container formArrayName="0"> 
                                     <label for="EventDetail">Updated By</label>
                                     <input type="text" formControlName="modifiedBy" class="EventDetail">
                                 </ng-container>
-                                </div>
+                                </div> -->
                             </form>
                         </div>
                          <div class="modal-footer">
                             <button type="button" (click)="postBanData()" class="btn btn-secondary" data-bs-dismiss="modal">Submit</button>
+                            <button (click)="update()">Update</button>
                         </div>
                     </div>
                 </div>
@@ -123,6 +124,7 @@
 </div>
 
 <div class="DataTable">
+    
     <table>
         <thead class="head">
             <tr class="TableHeader">
@@ -140,9 +142,9 @@
             <!-- {{item | json}} -->
             <td>{{item.carouselDetails[0].name}}</td>
             <td>{{item.createdAt | date:"dd/MM/yyyy"}}</td>
-            <td>{{item.carouselDetails[0].createdBy}}</td>
+            <td></td>
             <td>{{item.updatedAt | date:"dd/MM/yyyy"}}</td>
-            <td>{{item.carouselDetails[0].modifiedBy}}</td>
+            <td></td>
             <td>
                 <div class="actions">
                     <button (click)="editBanData(item)" data-bs-toggle="modal"

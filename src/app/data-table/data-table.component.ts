@@ -24,52 +24,43 @@ export class DataTableComponent implements OnInit {
     this.getBanData();
     this.formValue = this.formbuilder.group(
       {
-      innerData: this.formbuilder.array([
-        this.formbuilder.group(
-          {
-            header: new FormControl(''),
-            text: new FormControl(''),
-            buttonText: new FormControl(''),
-          }
-        )
-      ]),
-      background: this.formbuilder.array([
-        this.formbuilder.group({
-          url: new FormControl(''),
-        alt: new FormControl('')
-        })
-      ]),
-      image: this.formbuilder.array([
-        this.formbuilder.group(
-          {
+        innerData: this.formbuilder.array([
+          this.formbuilder.group(
+            {
+              header: new FormControl(''),
+              text: new FormControl(''),
+              buttonText: new FormControl(''),
+            }
+          )
+        ]),
+        background: this.formbuilder.array([
+          this.formbuilder.group({
             url: new FormControl(''),
             alt: new FormControl('')
-          }
-        )
-      ]),
-      carouselDetails: this.formbuilder.array([
-        this.formbuilder.group(
-          {
-            name: new FormControl(''),
-            createdBy: new FormControl(''),
-            modifiedBy: new FormControl(''),
-            description: new FormControl('')
-          }
-        )
-      ]),
-      routeLink: new FormControl(''),
-    })
+          })
+        ]),
+        image: this.formbuilder.array([
+          this.formbuilder.group(
+            {
+              url: new FormControl(''),
+              alt: new FormControl('')
+            }
+          )
+        ]),
+        carouselDetails: this.formbuilder.array([
+          this.formbuilder.group(
+            {
+              name: new FormControl(''),
+              createdBy: new FormControl(''),
+              modifiedBy: new FormControl(''),
+              description: new FormControl('')
+            }
+          )
+        ]),
+        routeLink: new FormControl(''),
+      })
   }
 
-  editBanData(item: any) {
-   console.log(item)
-   delete item.createdAt;
-   delete item.updatedAt;
-   delete item.__v;
-   this.formValue.addControl("_id",new FormControl(''))
-   this.formValue.setValue(item)
-
-  }
   getBanData() {
     this.data.getBanData().subscribe((datas) => {
       this.allBanDatas = datas;
@@ -77,24 +68,43 @@ export class DataTableComponent implements OnInit {
     })
   }
 
-  update(data: any) {
-    console.log(data + "update")
+
+  editBanData(item: any) {
+    console.log(item)
+    delete item.createdAt;
+    delete item.updatedAt;
+    delete item.__v;
+    this.formValue.addControl("_id", new FormControl(''))
+    this.formValue.setValue(item)
   }
-  postBanData() {
+
+  update() {
+    const id = this.formValue.value._id
+    console.log(id, "id")
+    this.data.updateBanData(id, this.formValue.value).subscribe((result: any) => {
+      this.allBanDatas = result
+      console.log(result, "result")
+    })
+    let ref = document.getElementById('cancel')
+    ref?.click();
+    this.getBanData()
+  }
+
+    postBanData() {
     this.allBanDatas = this.formValue.value;
     console.log(this.allBanDatas)
     this.data.postBanData(this.formValue.value)
       .subscribe((res) => {
         console.log(res)
         alert("Data Added")
-        this.getBanData()
         let ref = document.getElementById('cancel')
         ref?.click();
+        this.getBanData()
       })
   }
 
   deleteBanData(item: any) {
-    console.log("ID" ,item)
+    console.log("ID", item)
     this.data.deleteBanData(item._id).subscribe(res => {
       alert("Data Deleted")
       this.getBanData();

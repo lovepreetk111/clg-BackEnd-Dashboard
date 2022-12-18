@@ -1,5 +1,5 @@
 export interface IBannerCarosuelComponent {
-    id:string
+    // id:string
     innerData:IinnerData
     background:Ibackground
     image:Iimage[]
@@ -23,8 +23,6 @@ export interface Iimage{
 }
 export interface IcarouselInfo{
     name:string,
-    createdBy:string,
-    modifiedBy:string,
     description:string
 }
 

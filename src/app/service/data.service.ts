@@ -30,8 +30,8 @@ postBanData(data:IBannerCarosuelComponent):Observable<any>{
 return this.http.post<IBannerCarosuelComponent>((`${this.apiUrl}bannerData`),data)
 }
 
-updateBanData(data:any, id:string){
-  return this.http.put<IBannerCarosuelComponent[]>((`${this.apiUrl}bannerData/`),data)
+updateBanData(id:string,data:any){
+  return this.http.put<IBannerCarosuelComponent[]>((`${this.apiUrl}bannerData/`)+id,data)
   .pipe(map((res:any)=>{
     return res
   }))
