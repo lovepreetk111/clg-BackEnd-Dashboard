@@ -29,3 +29,22 @@ export interface IcarouselInfo{
 /* export class BannerDatas{
     public innerData : IinnerData[]
 } */
+
+export interface INoticeConfig {
+    noticeInfo: INoticeInfo[]
+    modalData: IModalData[]
+}
+  export interface INoticeInfo {
+    NameToDisplay: string,
+    noticeDate: string,
+    noticeLink: string
+  }
+  
+  export interface IModalData {
+    noticename: string,
+    title: string,
+    name: string,
+    description: string,
+    createdAt:string,
+    updatedAt:string
+  }
