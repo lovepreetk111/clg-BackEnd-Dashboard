@@ -9,6 +9,7 @@ import { DataTableComponent } from './data-table/data-table.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselComponent } from './dashboard/carousel/carousel.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NoticeComponent } from './notice/notice.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     DashboardComponent,
     DataTableComponent,
     CarouselComponent,
+    NoticeComponent,
 
   ],
   imports: [
