@@ -8,6 +8,8 @@ export interface IBannerCarosuelComponent {
     createdAt:string
     updatedAt:string
 }
+
+
 export interface IinnerData{
     header:string;
     text:string,
@@ -31,6 +33,7 @@ export interface IcarouselInfo{
 } */
 
 export interface INoticeConfig {
+    Test:string
     noticeInfo: INoticeInfo[]
     modalData: IModalData[]
 }

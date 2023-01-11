@@ -5,8 +5,8 @@
     <div class="AddFunction">
         <div class="popupModule">
             <!-- Button trigger modal -->
-            <button type="button" class="btn module-button" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop2">
+            <button (click)="AddFlag('add')" type="button" class="btn module-button" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop2" >
                 Add Carousel
             </button>
 
@@ -16,7 +16,8 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Carousel</h1>
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel" *ngIf="AddCarousel">Add Carousel</h1>
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel" *ngIf="EditCarousel">Edit Carousel</h1>
                             <button id="cancel" type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
@@ -59,15 +60,7 @@
                                         class="CarouselHeader" placeholder="Enter button text">
                                     </ng-container>
                                 </div>
-                               <!--  <div formGroupName="background">
-                                    <ng-container formArrayName="0"> 
-                                    <label for="Image">Background Url</label>
-                                    <button onclick="document.getElementById('getFile').click()">Select an
-                                        Image<br>+</button>
-                                    <input type='file' formControlName="url" id="getFile" style="display:none"
-                                        name="img">
-                                    </ng-container>
-                                </div> -->
+
                                 <div formGroupName="background">
                                     <ng-container formArrayName="0"> 
                                     <label for="CarouselHeader">Background Alt</label>
@@ -98,22 +91,13 @@
                                         placeholder="Enter Background alt">
                                     </ng-container>
                                 </div>
-                               <!--  <div formGroupName="carouselDetails">
-                                    <ng-container formArrayName="0"> 
-                                    <label for="EventDetail">Created By</label>
-                                    <input type="text" formControlName="createdBy" class="EventDetail">
-                                </ng-container>
-                                </div> -->
-                               <!--  <div formGroupName="carouselDetails">
-                                    <ng-container formArrayName="0"> 
-                                    <label for="EventDetail">Updated By</label>
-                                    <input type="text" formControlName="modifiedBy" class="EventDetail">
-                                </ng-container>
-                                </div> -->
+                               
                             </form>
                         </div>
-                         <div class="modal-footer">
+                         <div class="modal-footer" *ngIf="AddCarousel">
                             <button type="button" (click)="postBanData()" class="btn btn-secondary" data-bs-dismiss="modal">Submit</button>
+                        </div>
+                         <div class="modal-footer" *ngIf="EditCarousel">
                             <button (click)="update()">Update</button>
                         </div>
                     </div>
@@ -147,7 +131,7 @@
             <td></td>
             <td>
                 <div class="actions">
-                    <button (click)="editBanData(item)" data-bs-toggle="modal"
+                    <button (click)="AddFlag('edit')" (click)="editBanData(item)" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop2"  class="btn module-button">
                     <img src="assets/images/Edit.svg" alt="">
                 </button>

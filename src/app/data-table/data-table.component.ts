@@ -15,14 +15,15 @@ interface Product {
 export class DataTableComponent implements OnInit {
   allBanData!: IBannerCarosuelComponent;
   allBanDatas: IBannerCarosuelComponent[] = []
-
+  AddCarousel=false
+  EditCarousel=false
   formValue!: FormGroup
-
   constructor(private data: DataService, private formbuilder: FormBuilder) {
   }
+
   ngOnInit(): void {
     this.getBanData();
-    this.formValue = this.formbuilder.group(
+    this.formValue = this.formbuilder.group( //object
       {
         innerData: this.formbuilder.array([
           this.formbuilder.group(
@@ -60,15 +61,23 @@ export class DataTableComponent implements OnInit {
         routeLink: new FormControl(''),
       })
   }
-
+  AddFlag(item: any){
+    if(item == 'add'){
+      this.formValue.reset()
+      this.AddCarousel = true
+      this.EditCarousel = false
+    }
+    if(item == 'edit'){
+      this.AddCarousel = false
+      this.EditCarousel = true
+    }
+  }
   getBanData() {
     this.data.getBanData().subscribe((datas) => {
       this.allBanDatas = datas;
       console.log(datas)
     })
   }
-
-
   editBanData(item: any) {
     console.log(item)
     delete item.createdAt;
@@ -76,6 +85,7 @@ export class DataTableComponent implements OnInit {
     delete item.__v;
     this.formValue.addControl("_id", new FormControl(''))
     this.formValue.setValue(item)
+    // this.AddCarousel=false;
   }
 
   update() {
@@ -96,10 +106,12 @@ export class DataTableComponent implements OnInit {
     this.data.postBanData(this.formValue.value)
       .subscribe((res) => {
         console.log(res)
+        this.formValue.reset()
         alert("Data Added")
         let ref = document.getElementById('cancel')
         ref?.click();
         this.getBanData()
+        // this.AddCarousel = false
       })
   }
 
