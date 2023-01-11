@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormGroupName, FormArray } from '@angular/forms';
 import { IBannerCarosuelComponent } from '../service/data.interface';
@@ -17,14 +18,19 @@ export class DataTableComponent implements OnInit {
   allBanDatas: IBannerCarosuelComponent[] = []
   AddCarousel=false
   EditCarousel=false
-  formValue!: FormGroup
-  constructor(private data: DataService, private formbuilder: FormBuilder) {
+  formValue: any = FormGroup
+  selectedFile: any;
+  SERVER_URL = "http://localhost:3000/bannerData/upload";
+  constructor(private data: DataService, private formbuilder: FormBuilder, private http: HttpClient) {
   }
 
   ngOnInit(): void {
     this.getBanData();
     this.formValue = this.formbuilder.group( //object
       {
+       
+        profile: [''],
+
         innerData: this.formbuilder.array([
           this.formbuilder.group(
             {
@@ -73,11 +79,12 @@ export class DataTableComponent implements OnInit {
     }
   }
   getBanData() {
-    this.data.getBanData().subscribe((datas) => {
+    this.data.getBanData().subscribe((datas: IBannerCarosuelComponent[]) => {
       this.allBanDatas = datas;
       console.log(datas)
     })
   }
+
   editBanData(item: any) {
     console.log(item)
     delete item.createdAt;
@@ -85,7 +92,6 @@ export class DataTableComponent implements OnInit {
     delete item.__v;
     this.formValue.addControl("_id", new FormControl(''))
     this.formValue.setValue(item)
-    // this.AddCarousel=false;
   }
 
   update() {
@@ -100,28 +106,60 @@ export class DataTableComponent implements OnInit {
     this.getBanData()
   }
 
-    postBanData() {
+   postBanData() {
+    this.uploadImg();
     this.allBanDatas = this.formValue.value;
     console.log(this.allBanDatas)
-    this.data.postBanData(this.formValue.value)
-      .subscribe((res) => {
-        console.log(res)
-        this.formValue.reset()
-        alert("Data Added")
-        let ref = document.getElementById('cancel')
-        ref?.click();
-        this.getBanData()
-        // this.AddCarousel = false
-      })
   }
 
-  deleteBanData(item: any) {
-    console.log("ID", item)
-    this.data.deleteBanData(item._id).subscribe(res => {
+ deleteBanData(item: any) {
+    const datadelete = this.allBanDatas.length;
+    if(datadelete === 1){
+      alert("You Can't delete this data atleast 1 data should be present")
+    }
+    else{
+      console.log( this.allBanData)
+    this.data.deleteBanData(item._id).subscribe(() => {
       alert("Data Deleted")
       this.getBanData();
+      
     })
+    }
   }
+
+  onFileSelect(event:any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.formValue.get('profile').setValue(file);
+    }
+    console.log(event.target.file);
+  }
+
+
+ 
+
+  uploadImg() {
+    const formData = new FormData();
+   formData.append('file', this.formValue.get('profile').value);
+   
+   this.http.post<any>(this.SERVER_URL, formData).subscribe(
+     (res) => {
+       const carouselData2 = this.formValue.value;
+       carouselData2['image'][0]["url"]=res.filePath;
+       console.log(this.formValue.get(['image', 0, "url"]))
+       this.data.postBanData(carouselData2)
+       .subscribe((res: any) => {
+         console.log(res)
+         alert("Data Added")
+         let ref = document.getElementById('cancel')
+         ref?.click();
+         this.getBanData()
+
+       })
+     },
+     (err) => console.log(err)
+   );
+}
 
 }
 

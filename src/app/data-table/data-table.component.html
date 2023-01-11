@@ -60,7 +60,42 @@
                                         class="CarouselHeader" placeholder="Enter button text">
                                     </ng-container>
                                 </div>
-
+                                <div formGroupName="image">
+                                    <ng-container formArrayName="0">
+                                      <label for="Image">Background Image</label>
+                                      <button
+                                        onclick="document.getElementById('getFile').click()"
+                                      >
+                                        Select an Image<br />+
+                                      </button>
+                                      <!-- <div class="cropperImg">
+                                          <img [src]="imageChangedEvent" />
+                                          <image-cropper
+                                            [imageChangedEvent]="imageChangedEvent"
+                                            [maintainAspectRatio]="true"
+                                            [aspectRatio]="4 / 3"
+                                            [resizeToWidth]="128"
+                                            (imageCropped)="imageCropped($event)"
+                                            (imageLoaded)="imageLoaded()"
+                                            (cropperReady)="cropperReady()"
+                                            (loadImageFailed)="loadImageFailed()"
+                                            onclick="document.getElementById('getFile').click()"
+                                          >
+                                      </image-cropper>
+                                      </div>
+                                      <div class="preview">
+                                          <img [src]="cropImgPreview" alt="">
+                                      </div> -->
+                                      <input
+                                        type="file"
+                                        formControlName="url"
+                                        id="getFile"
+                                        style="display: none"
+                                        name="profile"
+                                        (change)="onFileSelect($event)"
+                                      />
+                                    </ng-container>
+                                  </div>
                                 <div formGroupName="background">
                                     <ng-container formArrayName="0"> 
                                     <label for="CarouselHeader">Background Alt</label>
@@ -68,15 +103,7 @@
                                         placeholder="Enter Background alt">
                                     </ng-container>
                                 </div>
-                               <!--  <div formGroupName="image">
-                                    <ng-container formArrayName="0"> 
-                                    <label for="Image">Image Url</label>
-                                    <button onclick="document.getElementById('getFile').click()">Select an
-                                        Image<br>+</button>
-                                    <input type='file' formControlName="url" id="getFile" style="display:none"
-                                        name="img">
-                                    </ng-container>
-                                </div> -->
+                                
                                 <div formGroupName="image">
                                     <ng-container formArrayName="0"> 
                                     <label for="CarouselHeader">Image Alt</label>
