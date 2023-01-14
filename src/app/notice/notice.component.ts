@@ -11,6 +11,8 @@ import { DataService } from '../service/data.service';
 export class NoticeComponent implements OnInit {
   allNoticeDatas: INoticeConfig[] = []
   formValue!: FormGroup
+  AddData=false
+  EditData=false
 
   constructor(private noticeservice: DataService, private formbuilder: FormBuilder) { }
 
@@ -41,6 +43,18 @@ export class NoticeComponent implements OnInit {
     )
   }
 
+  AddFlag(item: any){
+    if(item == 'add'){
+      this.formValue.reset()
+      this.AddData = true
+      this.EditData = false
+    }
+    if(item == 'edit'){
+      this.AddData = false
+      this.EditData = true
+    }
+  }
+
   getNoticeData() {
     this.noticeservice.getNoticeData().subscribe((datas) => {
       this.allNoticeDatas = datas;
@@ -53,18 +67,37 @@ export class NoticeComponent implements OnInit {
     this.noticeservice.postNoticeData(this.formValue.value)
       .subscribe((res) => {
         alert("Data Added")
-
+        let ref = document.getElementById('cancel')
+        ref?.click();
+        this.getNoticeData()
       })
   }
 
   editNoticeData(item: any) {
-
+    delete item.createdAt;
+    delete item.updatedAt;
+    delete item.__v;
+    this.formValue.addControl("_id", new FormControl(''))
+    this.formValue.setValue(item)
   }
 
   update() {
-
+    const id = this.formValue.value._id;
+    this.noticeservice.updateNoticeData(id, this.formValue.value).subscribe((data)=>{
+      this.allNoticeDatas = data
+      alert("Data updated")
+    })
+    let ref = document.getElementById('cancel')
+    ref?.click();
+    this.getNoticeData()
   }
 
-  deleteBanData(item: any) { }
+  deleteBanData(item: any) { 
+    console.log(item._id, "delete ka id")
+    this.noticeservice.deleteNoticeData(item._id).subscribe(data=>{
+      alert("Data Deleted");
+      this.getNoticeData()
+    })
+  }
 
 }

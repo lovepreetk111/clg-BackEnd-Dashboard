@@ -33,6 +33,7 @@ export interface IcarouselInfo{
 } */
 
 export interface INoticeConfig {
+    _id:string
     noticeTitle: string
     noticeDate: string
     noticeName: string
