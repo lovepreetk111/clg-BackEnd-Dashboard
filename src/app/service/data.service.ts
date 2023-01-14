@@ -18,11 +18,14 @@ export class DataService {
       return res;
     }))
   }
+  
   getNoticeData(){
-    return this.http.get<IBannerCarosuelComponent[]>(`${this.apiUrl}notice-data`).pipe(map((res:any)=>{
+    return this.http.get<IBannerCarosuelComponent[]>(`${this.apiUrl}notice-config`).pipe(map((res:any)=>{
       return res;
     }))
   }
+
+  
 
  /*  postBanData(data:any){
   return this.http.post<IBannerCarosuelComponent[]>((`${this.apiUrl}bannerData`),data)
@@ -36,7 +39,7 @@ return this.http.post<IBannerCarosuelComponent>((`${this.apiUrl}bannerData`),dat
 }
 
 postNoticeData(data:IBannerCarosuelComponent):Observable<any>{
-  return this.http.post<IBannerCarosuelComponent>((`${this.apiUrl}notice-data`),data)
+  return this.http.post<IBannerCarosuelComponent>((`${this.apiUrl}notice-config`),data)
   }
 
 updateBanData(id:string,data:any){
@@ -47,7 +50,7 @@ updateBanData(id:string,data:any){
 }
 
 updateNoticeData(id:string,data:any){
-  return this.http.put<IBannerCarosuelComponent[]>((`${this.apiUrl}notice-data/`)+id,data)
+  return this.http.put<IBannerCarosuelComponent[]>((`${this.apiUrl}notice-config/`)+id,data)
   .pipe(map((res:any)=>{
     return res
   }))
@@ -60,7 +63,7 @@ deleteBanData(id:number){
   }))
 }
 deleteNoticeData(id:number){
-  return this.http.delete<IBannerCarosuelComponent[]>((`${this.apiUrl}notice-data/`)+id)
+  return this.http.delete<IBannerCarosuelComponent[]>((`${this.apiUrl}notice-config/`)+id)
   .pipe(map((res)=>{
     return res;
   }))
