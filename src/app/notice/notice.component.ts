@@ -62,18 +62,8 @@ export class NoticeComponent implements OnInit {
     })
   }
 
-  postNoticeData() {
-    this.allNoticeDatas = this.formValue.value;
-    this.noticeservice.postNoticeData(this.formValue.value)
-      .subscribe((res) => {
-        alert("Data Added")
-        let ref = document.getElementById('cancel')
-        ref?.click();
-        this.getNoticeData()
-      })
-  }
-
   editNoticeData(item: any) {
+    console.log(item, "edit click items")
     delete item.createdAt;
     delete item.updatedAt;
     delete item.__v;
@@ -83,13 +73,27 @@ export class NoticeComponent implements OnInit {
 
   update() {
     const id = this.formValue.value._id;
-    this.noticeservice.updateNoticeData(id, this.formValue.value).subscribe((data)=>{
+    this.noticeservice.updateNoticeData(id, this.formValue.value).subscribe((data:any)=>{
       this.allNoticeDatas = data
       alert("Data updated")
+      console.log(data, "Updated data")
     })
     let ref = document.getElementById('cancel')
     ref?.click();
     this.getNoticeData()
+  }
+  
+  postNoticeData() {
+    this.allNoticeDatas = this.formValue.value;
+    this.noticeservice.postNoticeData(this.formValue.value)
+      .subscribe((res) => {
+        console.log(res)
+        this.formValue.reset()
+        alert("Data Added")
+        let ref = document.getElementById('cancel')
+        ref?.click();
+        this.getNoticeData()
+      })
   }
 
   /* deleteNoticeData(item: any) { 
