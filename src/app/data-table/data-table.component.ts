@@ -79,7 +79,7 @@ export class DataTableComponent implements OnInit {
     })
   }
   editBanData(item: any) {
-    console.log(item)
+    console.log(item, "edit click items")
     delete item.createdAt;
     delete item.updatedAt;
     delete item.__v;
