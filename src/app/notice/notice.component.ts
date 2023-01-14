@@ -92,12 +92,27 @@ export class NoticeComponent implements OnInit {
     this.getNoticeData()
   }
 
-  deleteBanData(item: any) { 
+  /* deleteNoticeData(item: any) { 
     console.log(item._id, "delete ka id")
     this.noticeservice.deleteNoticeData(item._id).subscribe(data=>{
       alert("Data Deleted");
       this.getNoticeData()
     })
+  } */
+
+  deleteNoticeData(item: any) {
+    const datadelete = this.allNoticeDatas.length;
+    if(datadelete === 1){
+      alert("You Can't delete this data atleast 1 data should be present")
+    }
+    else{
+      console.log( this.allNoticeDatas)
+    this.noticeservice.deleteBanData(item._id).subscribe(() => {
+      alert("Data Deleted")
+      this.getNoticeData();
+      
+    })
+    }
   }
 
 }
