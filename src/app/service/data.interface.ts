@@ -33,21 +33,20 @@ export interface IcarouselInfo{
 } */
 
 export interface INoticeConfig {
-    Test:string
-    noticeInfo: INoticeInfo[]
-    modalData: IModalData[]
-}
-  export interface INoticeInfo {
-    NameToDisplay: string,
-    noticeDate: string,
-    noticeLink: string
-  }
-  
-  export interface IModalData {
-    noticename: string,
-    title: string,
-    name: string,
-    description: string,
-    createdAt:string,
+    noticeTitle: string
+    noticeDate: string
+    noticeName: string
     updatedAt:string
-  }
+    createdAt:string
+    innerNoticeData: IInnerNoticeData[]
+    dashboardInfo: IDashboardInfo[]
+}
+  
+export interface IInnerNoticeData {
+    img: string
+    noticeInfoText: string
+}
+
+export interface IDashboardInfo {
+    displayName: string,
+}

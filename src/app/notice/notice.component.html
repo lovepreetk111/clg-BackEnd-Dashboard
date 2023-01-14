@@ -5,8 +5,7 @@
     <div class="AddFunction">
         <div class="popupModule">
             <!-- Button trigger modal -->
-            <button type="button" class="btn module-button" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop2">
+            <button type="button" class="btn module-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
                 Add Notice
             </button>
 
@@ -21,25 +20,56 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+                            <!-- Image if there is in notice -->
                             <form action="" [formGroup]="formValue">
-                                <div formGroupName="carouselDetails">
-                                    <ng-container formArrayName="0"> 
-                                    <label for="CarouselHeader">Name</label>
-                                    <input type="text" formControlName="name" class="CarouselHeader"
-                                        placeholder="Enter name">
+                                <div formGroupName="dashboardInfo">
+                                    <ng-container formArrayName="0">
+                                        <label for="CarouselHeader">Name to display on Dashboard</label>
+                                        <input type="text" formControlName="displayName" class="CarouselHeader"
+                                            placeholder="Enter name">
                                     </ng-container>
                                 </div>
-                                <div formGroupName="carouselDetails">
-                                    <ng-container formArrayName="0"> 
-                                    <label for="CarouselHeader">Description</label>
-                                    <input type="text" formControlName="description" class="CarouselHeader"
-                                        placeholder="Enter description">
+                                <div>
+                                    <ng-container>
+                                        <label for="CarouselHeader">Notice Title or Heading</label>
+                                        <input type="text" formControlName="noticeTitle" class="CarouselHeader"
+                                            placeholder="Enter name">
                                     </ng-container>
                                 </div>
+                                <div>
+                                    <ng-container>
+                                        <label for="CarouselHeader">Date of the Notice</label>
+                                        <input type="text" formControlName="noticeDate" class="CarouselHeader"
+                                            placeholder="Enter name">
+                                    </ng-container>
+                                </div>
+                                <div>
+                                    <ng-container>
+                                        <label for="CarouselHeader">A short information of Notice</label>
+                                        <input type="text" formControlName="noticeName" class="CarouselHeader"
+                                            placeholder="Enter name">
+                                    </ng-container>
+                                </div>
+                                <div formGroupName="innerNoticeData">
+                                    <ng-container formArrayName="0">
+                                        <label for="CarouselHeader">Information in Image if there any</label>
+                                        <input type="text" formControlName="img" class="CarouselHeader"
+                                            placeholder="Enter name">
+                                    </ng-container>
+                                </div>
+                                <div formGroupName="innerNoticeData">
+                                    <ng-container formArrayName="0">
+                                        <label for="CarouselHeader">Detailed Information of Notice in Text</label>
+                                        <input type="text" formControlName="description" class="CarouselHeader"
+                                            placeholder="Enter description">
+                                    </ng-container>
+                                </div>
+                                
                             </form>
                         </div>
-                         <div class="modal-footer">
-                            <button type="button" (click)="postNoticeData()" class="btn btn-secondary" data-bs-dismiss="modal">Submit</button>
+                        <div class="modal-footer">
+                            <button type="button" (click)="postNoticeData()" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Submit</button>
                             <button (click)="update()">Update</button>
                         </div>
                     </div>
@@ -50,11 +80,11 @@
 </div>
 
 <div class="DataTable">
-    
+
     <table>
         <thead class="head">
             <tr class="TableHeader">
-                
+
                 <th>NAME</th>
                 <th>CREATED ON</th>
                 <th>CREATED BY</th>
@@ -63,20 +93,21 @@
                 <th>ACTION</th>
             </tr>
         </thead>
-        <tr *ngFor="let item of allNoticeData">
-           
+        <!-- {{allNoticeDatas | json}} -->
+        <tr *ngFor="let item of allNoticeDatas">
+
             <!-- {{item | json}} -->
-            <td>{{item.modalData[0].noticename}}</td>
-            <td>{{item.modalData[0].createdAt | date:"dd/MM/yyyy"}}</td>
+            <td>{{item.dashboardInfo[0].displayName}}</td>
+            <td>{{item.createdAt | date:"dd/MM/yyyy"}}</td>
             <td>created by</td>
-            <td>{{item.modalData[0].updatedAt| date:"dd/MM/yyyy"}}</td>
+            <td>{{item.updatedAt | date:"dd/MM/yyyy"}}</td>
             <td>modified by</td>
             <td>
                 <div class="actions">
-                    <button (click)="editNoticeData(item)" data-bs-toggle="modal"
-                    data-bs-target="#staticBackdrop2"  class="btn module-button">
-                    <img src="assets/images/Edit.svg" alt="">
-                </button>
+                    <button (click)="editNoticeData(item)" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"
+                        class="btn module-button">
+                        <img src="assets/images/Edit.svg" alt="">
+                    </button>
                     <div class="Delete">
                         <div class="AddFunction">
                             <div class="popupModule">
@@ -84,31 +115,31 @@
                                 <button type="button" class="btn module-button" data-bs-toggle="modal"
                                     data-bs-target="#staticBackdrop">
                                     <img src="assets/images/Delete.svg" alt="">
-                                </button>   
+                                </button>
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Warning!</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Are you shure you want to Delete this?</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary"
-                                                data-bs-dismiss="modal" (click)="deleteBanData(item)">YES</button>
-                                            <button type="button" class="btn btn-danger"
-                                                data-bs-dismiss="modal" id="donotdelte">NO</button>
+                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Warning!</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Are you shure you want to Delete this?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                                                    (click)="deleteBanData(item)">YES</button>
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                                                    id="donotdelte">NO</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                     </div>

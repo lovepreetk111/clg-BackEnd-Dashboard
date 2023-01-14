@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { INoticeConfig } from '../service/data.interface';
 import { DataService } from '../service/data.service';
@@ -9,61 +9,62 @@ import { DataService } from '../service/data.service';
   styleUrls: ['./notice.component.scss']
 })
 export class NoticeComponent implements OnInit {
-
+  allNoticeDatas: INoticeConfig[] = []
   formValue!: FormGroup
 
-  allNoticeData: INoticeConfig[] = []
-  constructor(private notice: DataService, private formbuilder: FormBuilder) { }
+  constructor(private noticeservice: DataService, private formbuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.getNoticeData();
     this.formValue = this.formbuilder.group(
       {
-        noticeInfo:this.formbuilder.array([
+        noticeTitle: new FormControl(''),
+        noticeData: new FormControl(''),
+        noticeName: new FormControl(''), 
+        createdAt: new FormControl(''),
+        updatedAt: new FormControl(''),
+        innerNoticeData: this.formbuilder.array([
+          this.formbuilder.group(
+            {
+              img: new FormControl(''),
+              noticeInfoText: new FormControl('')
+            }
+          )
+        ]),
+        dashboardInfo: this.formbuilder.array([
           this.formbuilder.group({
-            NameToDisplay: new FormControl(''),
-            noticeData: new FormControl(''),
-            noticeLink: new FormControl(''),
-          })
-        ]), 
-        modalData: this.formbuilder.array([
-          this.formbuilder.group({
-            noticename: new FormControl(''),
-            title: new FormControl(''),
-            name: new FormControl(''),
-            description: new FormControl(''), 
-            createdAt: new FormControl(''), 
-            updatedAt: new FormControl('')
+            displayName: new FormControl('')
           })
         ])
-      }, 
-      
+      },
+
     )
   }
 
   getNoticeData() {
-    this.notice.getNoticeData().subscribe((datas) => {
-      this.allNoticeData = datas;
+    this.noticeservice.getNoticeData().subscribe((datas) => {
+      this.allNoticeDatas = datas;
+      console.log(datas)
     })
   }
 
   postNoticeData() {
-    this.allNoticeData = this.formValue.value;
-    this.notice.postNoticeData(this.formValue.value)
-    .subscribe((res)=>{
-      alert("Data Added")
+    this.allNoticeDatas = this.formValue.value;
+    this.noticeservice.postNoticeData(this.formValue.value)
+      .subscribe((res) => {
+        alert("Data Added")
 
-    })
+      })
   }
 
   editNoticeData(item: any) {
 
   }
 
-  update(){
+  update() {
 
   }
 
-  deleteBanData(item:any){}
+  deleteBanData(item: any) { }
 
 }
