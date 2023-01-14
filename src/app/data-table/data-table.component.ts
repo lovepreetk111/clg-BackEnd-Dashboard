@@ -115,14 +115,29 @@ export class DataTableComponent implements OnInit {
       })
   }
 
-  deleteBanData(item: any) {
+/*   deleteBanData(item: any) {
     console.log("ID", item)
     this.data.deleteBanData(item._id).subscribe(res => {
       alert("Data Deleted")
       this.getBanData();
     })
-  }
+  } */
 
+
+  deleteBanData(item: any) {
+    const datadelete = this.allBanDatas.length;
+    if(datadelete === 1){
+      alert("You Can't delete this data atleast 1 data should be present")
+    }
+    else{
+      console.log( this.allBanData)
+    this.data.deleteBanData(item._id).subscribe(() => {
+      alert("Data Deleted")
+      this.getBanData();
+      
+    })
+    }
+  }
 }
 
 

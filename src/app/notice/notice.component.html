@@ -5,7 +5,7 @@
     <div class="AddFunction">
         <div class="popupModule">
             <!-- Button trigger modal -->
-            <button type="button" class="btn module-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+            <button (click)="AddFlag('add')" type="button" class="btn module-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
                 Add Notice
             </button>
 
@@ -15,7 +15,8 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Carousel</h1>
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel" *ngIf="AddData">Add Carousel</h1>
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel" *ngIf="EditData">Edit Carousel</h1>
                             <button id="cancel" type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
@@ -60,18 +61,20 @@
                                 <div formGroupName="innerNoticeData">
                                     <ng-container formArrayName="0">
                                         <label for="CarouselHeader">Detailed Information of Notice in Text</label>
-                                        <input type="text" formControlName="description" class="CarouselHeader"
+                                        <input type="text" formControlName="noticeInfoText" class="CarouselHeader"
                                             placeholder="Enter description">
                                     </ng-container>
                                 </div>
                                 
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" (click)="postNoticeData()" class="btn btn-secondary"
-                                data-bs-dismiss="modal">Submit</button>
+                        <div class="modal-footer" *ngIf="AddData">
+                            <button type="button" (click)="postNoticeData()" class="btn btn-secondary" data-bs-dismiss="modal">Submit</button>
+                        </div>
+                        <div class="modal-footer" *ngIf="EditData">
                             <button (click)="update()">Update</button>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -104,7 +107,7 @@
             <td>modified by</td>
             <td>
                 <div class="actions">
-                    <button (click)="editNoticeData(item)" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"
+                    <button (click)="AddFlag('edit')" (click)="editNoticeData(item)" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"
                         class="btn module-button">
                         <img src="assets/images/Edit.svg" alt="">
                     </button>
@@ -133,7 +136,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                                                    (click)="deleteBanData(item)">YES</button>
+                                                    (click)="deleteNoticeData(item)">YES</button>
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
                                                     id="donotdelte">NO</button>
                                             </div>
