@@ -51,3 +51,42 @@ export interface IInnerNoticeData {
 export interface IDashboardInfo {
     displayName: string,
 }
+
+// ========================================= Research =========================================================
+
+export interface IResearchComponent{
+    imageResearch:IResearchImage[],
+    infoResearch:IinfoResearch[]
+    createdAt:string
+    updatedAt:string
+    
+}
+
+export interface IResearchImage{
+    url:string,
+    alt:string,
+    text:string
+}
+
+export interface IinfoResearch{
+    name:string,
+    description:string
+    dataResearch:string
+}
+
+// ==============================================Placement==========================================================
+
+export interface IPlacementComponent{
+  placementData:IPlacementData[]
+  createdAt:string
+ updatedAt:string
+}
+
+export interface IPlacementData{
+    name:string
+    url:string
+    alt:string
+    post:string
+    facultyName:string
+  } 
+  

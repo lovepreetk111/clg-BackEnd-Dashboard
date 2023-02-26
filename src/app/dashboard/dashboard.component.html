@@ -2,7 +2,7 @@
   <div class="left">
     <div class="sidebar">
       <div class="logo">
-        <img src="assets/images/Chetana Logo.svg" alt="">
+       <a href=""><img src="assets/images/Chetana Logo.svg" alt=""></a> 
       </div>
       <div class="menu">
         <button type="button" class="btn btn-secondary" aria-expanded="false">
@@ -14,39 +14,30 @@
             Home
           </button>
           <ul class="dropdown-menu">
-            <li><a routerLink="carousel">Carousel</a></li>
-            <li><a href="">Adout Chetana</a></li>
-            <li><a href="">Academics</a></li>
-            <li><a href="">Our Campus</a></li>
-            <li><a href="">Testimonials</a></li>
+            <li><a routerLink="home/carousel">Carousel</a></li>
+            <li><a routerLink="home/aboutchetana">About Chetana</a></li>
+            <li><a routerLink="home/academics">Academics</a></li>
+            <li><a routerLink="home/campus">Our Campus</a></li>
+            <li><a routerLink="home/testimonials">Testimonials</a></li>
           </ul>
         </div>
         <div class="btn-group dropend">
           <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false">
             Pages
+
           </button>
           <ul class="dropdown-menu">
-            <li class="btn-group dropend">
-              <button type="button" class="btn btn-secondary dropdown-toggle"
+              <!-- <button type="button" class="btn btn-secondary dropdown-toggle"
                 data-bs-toggle="dropdown-item" aria-expanded="false">
                 Home
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" routerLink="/carousel">Carousel</a></li>
-                <li><a class="dropdown-item" href="">Adout Chetana</a></li>
-                <li><a class="dropdown-item" href="">Academics</a></li>
-                <li><a class="dropdown-item" href="">Our Campus</a></li>
-                <li><a class="dropdown-item" href="">Testimonials</a></li>
-              </ul>
-            </li>
-            <li><a href="">About</a></li>
-            <li><a href="">Courses</a></li>
-            <li><a href="">Examination</a></li>
-            <li><a href="">Admimition</a></li>
-            <li><a href="">Placement</a></li>
-            <li><a href="">Research</a></li>
-            <li><a href="">Student Corner</a></li>
+              </button> -->
+            <li><a routerLink="page/courses">Courses</a></li>
+            <li><a routerLink="page/examination">Examination</a></li>
+            <!-- <li><a routerLink="page/admission">Admission</a></li> -->
+            <li><a routerLink="page/placement">Placement</a></li>
+            <li><a routerLink="page/research">Research</a></li>
+            <li><a routerLink="page/studentscorner">Student Corner</a></li>
           </ul>
         </div>
 
@@ -64,7 +55,7 @@
             Inbox
           </button>
           <ul class="dropdown-menu">
-            <a href="">Dropdown menu links</a>
+            <a routerLink="">Dropdown menu links</a>
           </ul>
         </div>
       </div>

@@ -7,8 +7,17 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DataTableComponent } from './data-table/data-table.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CarouselComponent } from './dashboard/carousel/carousel.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CoursesComponent } from './page/courses/courses.component';
+import { ExaminationComponent } from './page/examination/examination.component';
+import { PlacementComponent } from './page/placement/placement.component';
+import { ResearchComponent } from './page/research/research.component';
+import { StudentscornerComponent } from './page/studentscorner/studentscorner.component';
+import { TestimonialsComponent } from './dashboard/home/testimonials/testimonials.component';
+import { AboutchetanaComponent } from './dashboard/home/aboutchetana/aboutchetana.component';
+import { AcademicsComponent } from './dashboard/home/academics/academics.component';
+import { CampusComponent } from './dashboard/home/campus/campus.component';
+import { CarouselComponent } from './dashboard/home/carousel/carousel.component';
 import { NoticeComponent } from './notice/notice.component';
 
 
@@ -17,8 +26,17 @@ import { NoticeComponent } from './notice/notice.component';
     AppComponent,
     DashboardComponent,
     DataTableComponent,
-    CarouselComponent,
+    CoursesComponent,
+    ExaminationComponent,
+    PlacementComponent,
+    ResearchComponent,
+    StudentscornerComponent,
+    TestimonialsComponent,
+    AboutchetanaComponent,
+    AcademicsComponent,
+    CampusComponent,
     NoticeComponent,
+    CarouselComponent,
 
   ],
   imports: [
@@ -26,7 +44,8 @@ import { NoticeComponent } from './notice/notice.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
