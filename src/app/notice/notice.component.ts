@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { INoticeConfig } from '../service/data.interface';
-import { DataService } from '../service/data.service';
-
+import { INoticeConfig } from 'src/app/service/data.interface';
+import { DataService } from 'src/app/service/data.service';
 @Component({
   selector: 'app-notice',
   templateUrl: './notice.component.html',
