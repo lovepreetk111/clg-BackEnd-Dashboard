@@ -68,15 +68,15 @@
                                         placeholder="Enter Background alt">
                                     </ng-container>
                                 </div>
-                               <!--  <div formGroupName="image">
+                                <div formGroupName="image">
                                     <ng-container formArrayName="0"> 
-                                    <label for="Image">Image Url</label>
-                                    <button onclick="document.getElementById('getFile').click()">Select an
+                                    <label for="Image">Background Image</label>
+                                    <button onclick="document.getElementById('profile').click()">Select an
                                         Image<br>+</button>
-                                    <input type='file' formControlName="url" id="getFile" style="display:none"
-                                        name="img">
+                                    <input type='file' formControlName="profile" id="profile" style="display:none"
+                                    name="profile" (change)="onFileSelect($event)" />
                                     </ng-container>
-                                </div> -->
+                                </div>
                                 <div formGroupName="image">
                                     <ng-container formArrayName="0"> 
                                     <label for="CarouselHeader">Image Alt</label>
@@ -122,7 +122,9 @@
             </tr>
         </thead>
         <tr *ngFor="let item of allBanDatas">
-            <td *ngIf="item.image"><img [src]="item.image[0].url" [alt]="item.image[0].alt"></td>
+            <td *ngIf="item.image">
+                <img [src]="item.image[0].url" [alt]="item.image[0].alt">
+            </td>
             <!-- {{item | json}} -->
             <td>{{item.carouselDetails[0].name}}</td>
             <td>{{item.createdAt | date:"dd/MM/yyyy"}}</td>

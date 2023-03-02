@@ -1,11 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormGroupName, FormArray } from '@angular/forms';
 import { IBannerCarosuelComponent } from 'src/app/service/data.interface';
 import { DataService } from 'src/app/service/data.service';
-interface Product {
-  name: string;
-  id: any;
-}
+
 
 @Component({
   selector: 'app-carousel',
@@ -18,14 +16,19 @@ export class CarouselComponent implements OnInit {
   allBanDatas: IBannerCarosuelComponent[] = []
   AddCarousel=false
   EditCarousel=false
-  formValue!: FormGroup
-  constructor(private data: DataService, private formbuilder: FormBuilder) {
+  formValue:any = FormGroup
+  selectedFile: any;
+  SERVER_URL = "http://localhost:3000/bannerData/upload";
+  constructor(private data: DataService, private formbuilder: FormBuilder, private http: HttpClient ) {
   }
 
   ngOnInit(): void {
     this.getBanData();
-    this.formValue = this.formbuilder.group( //object
+    this.formValue = this.formbuilder.group(
       {
+       
+          profile:[''],
+      
         innerData: this.formbuilder.array([
           this.formbuilder.group(
             {
@@ -37,6 +40,7 @@ export class CarouselComponent implements OnInit {
         ]),
         background: this.formbuilder.array([
           this.formbuilder.group({
+                
             url: new FormControl(''),
             alt: new FormControl('')
           })
@@ -44,7 +48,7 @@ export class CarouselComponent implements OnInit {
         image: this.formbuilder.array([
           this.formbuilder.group(
             {
-              url: new FormControl(''),
+              profile: new FormControl(''),
               alt: new FormControl('')
             }
           )
@@ -75,19 +79,46 @@ export class CarouselComponent implements OnInit {
     }
   }
   getBanData() {
-    this.data.getBanData().subscribe((datas) => {
+    this.data.getBanData().subscribe((datas: IBannerCarosuelComponent[]) => {
       this.allBanDatas = datas;
       console.log(datas)
     })
   }
   editBanData(item: any) {
+    // this.formValue.controls['innerData'].setValue(item.header[0])
+    this.formValue.addControl('_id',  new FormControl(''));
+    this.formValue.setValue(item);
     console.log(item, "edit click items")
-    delete item.createdAt;
-    delete item.updatedAt;
+    // delete item.createdAt;
+    // delete item.updatedAt
     delete item.__v;
-    this.formValue.addControl("_id", new FormControl(''))
-    this.formValue.setValue(item)
-    // this.AddCarousel=false;
+    // this.formValue.patchValue({
+    //   innerData:[
+    //     {
+    //       header: item.header,
+    //       text: item.text,
+    //       buttonText: item.buttonText,
+    //     }
+    //   ]
+    // })
+  
+    // this.http.get<any>('http://localhost:3000/bannerData/upload').subscribe((profileData:any) => {
+    //   this.formValue.patchValue({
+    //     profile: profileData.profileName,
+    //     innerData: [
+    //       {
+    //         header: profileData.header1,
+    //         text: profileData.text1,
+    //         buttonText: profileData.button1
+    //       },
+    //       {
+    //         header: profileData.header2,
+    //         text: profileData.text2,
+    //         buttonText: profileData.button2
+    //       }
+    //     ]
+    //   });
+    // });
   }
 
   update() {
@@ -103,18 +134,24 @@ export class CarouselComponent implements OnInit {
   }
 
     postBanData() {
+    // this.allBanDatas = this.formValue.value;
+    // console.log(this.allBanDatas)
+    // this.data.postBanData(this.formValue.value)
+    //   .subscribe((res: any) => {
+    //     console.log(res)
+    //     this.formValue.reset()
+    //     alert("Data Added")
+    //     let ref = document.getElementById('cancel')
+    //     ref?.click();
+    //     this.getBanData()
+       
+    //   })
+    this.uploadImg();
+
+
+
     this.allBanDatas = this.formValue.value;
     console.log(this.allBanDatas)
-    this.data.postBanData(this.formValue.value)
-      .subscribe((res) => {
-        console.log(res)
-        this.formValue.reset()
-        alert("Data Added")
-        let ref = document.getElementById('cancel')
-        ref?.click();
-        this.getBanData()
-        // this.AddCarousel = false
-      })
   }
 
 /*   deleteBanData(item: any) {
@@ -141,5 +178,39 @@ export class CarouselComponent implements OnInit {
     }
   }
 
+
+  onFileSelect(event:any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.formValue.get('profile').setValue(file);
+    }
+    console.log(event.target.file);
+  }
+
+
+  uploadImg() {
+    const formData = new FormData();
+   formData.append('file', this.formValue.get('profile',).value);
+   
+   this.http.post<any>(this.SERVER_URL, formData).subscribe(
+     (res) => {
+       const carouselData2 = this.formValue.value;
+       carouselData2['image'][0]["url"]=res.filePath;
+       console.log(this.formValue.get(['image', 0, "url"]))
+       this.data.postBanData(carouselData2)
+       .subscribe((res: any) => {
+         console.log(res)
+         alert("Data Added")
+         let ref = document.getElementById('cancel')
+         ref?.click();
+         this.getBanData()
+
+       })
+     },
+     (err) => console.log(err)
+   );
+
+
+}
 
 }
