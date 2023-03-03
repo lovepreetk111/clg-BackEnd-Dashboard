@@ -1,0 +1,57 @@
+  getBanData() {
+    this.data.getBanData().subscribe((datas) => {
+      this.allBanDatas = datas;
+      console.log(datas)
+    })
+  }
+  editBanData(item: any) {
+    console.log(item, "edit click items")
+    delete item.createdAt;
+    delete item.updatedAt;
+    delete item.__v;
+    this.formValue.addControl("_id", new FormControl(''))
+    this.formValue.setValue(item)
+
+  }
+
+
+  update() {
+    const id = this.formValue.value._id
+    console.log(id, "id")
+    this.data.updateBanData(id, this.formValue.value)
+      .subscribe((result: any) => {
+        this.allBanDatas = result
+        console.log(result, "result")
+      },
+        error => console.log(error)
+      )
+    let ref = document.getElementById('cancel')
+    ref?.click();
+    this.getBanData()
+  }
+
+  postBanData() {
+    console.log(this.formValue.get('profile')?.value, "Value of image.url")
+    const test = (this.formValue.get('image') as FormArray).controls
+    // console.log(test.includes('url'))
+    this.allBanDatas = this.formValue.value;
+    console.log(this.allBanDatas)
+    this.data.postBanData(this.formValue.value)
+      .subscribe((res) => {
+        console.log(res)
+        this.formValue.reset()
+        alert("Data Added")
+        let ref = document.getElementById('cancel')
+        ref?.click();
+        this.getBanData()
+        // this.AddCarousel = false
+      })
+  }
+
+  deleteBanData(item: any) {
+    console.log("ID", item)
+    this.data.deleteBanData(item._id).subscribe(res => {
+      alert("Data Deleted")
+      this.getBanData();
+    })
+  }
