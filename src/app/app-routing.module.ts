@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminloginComponent } from './Auth/adminlogin/adminlogin.component';
+import { LoginFormComponent } from './Auth/login-form/login-form.component';
+import { RegistrationFormComponent } from './Auth/registration-form/registration-form.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { AboutchetanaComponent } from './dashboard/home/aboutchetana/aboutchetana.component';
 import { AcademicsComponent } from './dashboard/home/academics/academics.component';
 import { CampusComponent } from './dashboard/home/campus/campus.component';
@@ -27,89 +31,108 @@ import { StudentscornerComponent } from './page/studentscorner/studentscorner.co
 const routes: Routes = [
   
   {
-    path:'home/carousel',component:CarouselComponent ,
-    // data:{breadcrumb:'home'}
+    path:'auth/admin/register',component:RegistrationFormComponent ,
+   
   },
   {
-    path:'home/aboutchetana',component:AboutchetanaComponent,
-    // data:{breadcrumb:'About chetana'}
+    path:'auth/admin/login',component:LoginFormComponent ,
+   
   },
   {
-    path:'home/academics',component:AcademicsComponent,
-    // data:{breadcrumb:'Academics'}
+    path:'auth/superadminlogin',component:AdminloginComponent ,
+   
   },
   {
-    path:'home/campus',component:CampusComponent,
-    // data:{breadcrumb:'Campus'}
+    path:'admindashboard',component:DashboardComponent ,
+    children: [
+      {
+        path:'home/carousel',component:CarouselComponent,
+       
+      },
+      {
+        path:'home/carousel',component:CarouselComponent ,
+       
+      },
+      {
+        path:'home/aboutchetana',component:AboutchetanaComponent,
+    
+      },
+      {
+        path:'home/academics',component:AcademicsComponent,
+       
+      },
+      {
+        path:'home/campus',component:CampusComponent,
+       },
+      {
+        path:'home/testimonials',component:TestimonialsComponent
+      },
+      {
+        path:'notice', component:NoticeComponent
+      },
+      {
+        path:'page/courses', component:CoursesComponent
+      },
+      {
+        path:'page/examination', component:ExaminationComponent
+      },
+      {
+        path:'page/placement', component:PlacementComponent
+      },
+      {
+        path:'page/research', component:ResearchComponent
+      },
+      {
+        path:'page/studentscorner', component:StudentscornerComponent
+      },
+      // junior
+      {
+        path:'page/courses/junior/fyjc', component:FyjcComponent
+      },
+      {
+        path:'page/courses/junior/syjc', component:SyjcComponent
+      },
+      // degree
+      {
+        path:'page/courses/degree/ba', component:BaComponent
+      },
+      {
+        path:'page/courses/degree/bcom', component:BcomComponent
+      },
+    
+      // sfc
+      {
+        path:'page/courses/sfc/bscit', component:BscitComponent
+      },
+      {
+        path:'page/courses/sfc/bms', component:BmsComponent
+      },
+      {
+        path:'page/courses/sfc/baf', component:BafComponent
+      },
+      {
+        path:'page/courses/sfc/bmmc', component:BmmcComponent
+      },
+    
+      // PG
+    
+      {
+        path:'page/courses/pg/mcom', component:McomComponent
+      },
+    
+      //doctoral 
+    
+      {
+        path:'page/courses/doctoralprogramme/phd', component:PhdCommComponent
+      },
+    
+      //distance
+    
+      {
+        path:'page/courses/distancelearning/ycmou', component:YcmouComponent
+      },
+      ]
   },
-  {
-    path:'home/testimonials',component:TestimonialsComponent
-  },
-  {
-    path:'notice', component:NoticeComponent
-  },
-  {
-    path:'page/courses', component:CoursesComponent
-  },
-  {
-    path:'page/examination', component:ExaminationComponent
-  },
-  {
-    path:'page/placement', component:PlacementComponent
-  },
-  {
-    path:'page/research', component:ResearchComponent
-  },
-  {
-    path:'page/studentscorner', component:StudentscornerComponent
-  },
-  // junior
-  {
-    path:'page/courses/junior/fyjc', component:FyjcComponent
-  },
-  {
-    path:'page/courses/junior/syjc', component:SyjcComponent
-  },
-  // degree
-  {
-    path:'page/courses/degree/ba', component:BaComponent
-  },
-  {
-    path:'page/courses/degree/bcom', component:BcomComponent
-  },
-
-  // sfc
-  {
-    path:'page/courses/sfc/bscit', component:BscitComponent
-  },
-  {
-    path:'page/courses/sfc/bms', component:BmsComponent
-  },
-  {
-    path:'page/courses/sfc/baf', component:BafComponent
-  },
-  {
-    path:'page/courses/sfc/bmmc', component:BmmcComponent
-  },
-
-  // PG
-
-  {
-    path:'page/courses/pg/mcom', component:McomComponent
-  },
-
-  //doctoral 
-
-  {
-    path:'page/courses/doctoralprogramme/phd', component:PhdCommComponent
-  },
-
-  //distance
-
-  {
-    path:'page/courses/distancelearning/ycmou', component:YcmouComponent
-  },
-
   
 ];
 
