@@ -54,7 +54,7 @@ export class RegistrationFormComponent implements OnInit {
     const inputElement = document.getElementById("email") as HTMLInputElement;
     const inputValue = inputElement.value;
 
-    this.auth.getregister().subscribe(res => {
+    this.auth.getRegister().subscribe(res => {
       const data = res;
 
       const final = data.find((data: { _id: number; }) => data._id == data._id)

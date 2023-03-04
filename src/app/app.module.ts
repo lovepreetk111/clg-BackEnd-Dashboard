@@ -36,7 +36,8 @@ import { RegistrationFormComponent } from './Auth/registration-form/registration
 import { CommonModule } from '@angular/common';
 import { DisplayComponent } from './display/display.component';
 import { AdminloginComponent } from './Auth/adminlogin/adminlogin.component';
-
+import {TableModule} from 'primeng/table';
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -80,8 +81,9 @@ import { AdminloginComponent } from './Auth/adminlogin/adminlogin.component';
     ReactiveFormsModule,
     BreadcrumbModule,
     FormsModule,
-    CommonModule
-
+    CommonModule,
+    TableModule,
+    ButtonModule
     
   ],
   providers: [],

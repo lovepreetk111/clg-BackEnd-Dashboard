@@ -92,11 +92,12 @@ export interface IPlacementData{
 
   //auth
   export interface Iloginuser{
-    email:"string";
-    password:"string"
+    email:string;
+    password:string;
 }
 export interface Iregistration{
-    name:"string";
-    email:"string";
-    password:"string"
+    name:string;
+    designation:string;
+    email:string;
+    password:string;
 }

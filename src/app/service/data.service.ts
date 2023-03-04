@@ -129,6 +129,10 @@ deletePlacementData(id: string) {
   }))
 }
 
+deleteRegisterData(id:string){
+  return this.http.delete<Iregistration[]>((`${this.apiUrl}`)+id)
+}
+
 // ======================================Auth Module============================================================
 
 // getlogin(){
@@ -141,11 +145,13 @@ postlogin(data: Iloginuser): Observable<Iloginuser> {
   return this.http.post<Iloginuser>(`${this.apiUrl}login`,data);
 }
 
-getregister(){
+getRegister(){
   return this.http.get<Iregistration[]>(`${this.apiUrl}register`).pipe(map((res:any)=>{
     return res;
   }))
 }
+
+
 
 
 postregister(data: Iregistration): Observable<Iregistration> {
