@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {BreadcrumbModule} from 'angular-crumbs';
 import { DataTableComponent } from './data-table/data-table.component';
 
+import {ButtonModule} from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoursesComponent } from './page/courses/courses.component';
@@ -36,6 +37,7 @@ import { RegistrationFormComponent } from './Auth/registration-form/registration
 import { CommonModule } from '@angular/common';
 import { DisplayComponent } from './display/display.component';
 import { AdminloginComponent } from './Auth/adminlogin/adminlogin.component';
+import {TableModule} from 'primeng/table';
 
 
 @NgModule({
@@ -80,7 +82,9 @@ import { AdminloginComponent } from './Auth/adminlogin/adminlogin.component';
     ReactiveFormsModule,
     BreadcrumbModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    TableModule,
+    ButtonModule
 
     
   ],
