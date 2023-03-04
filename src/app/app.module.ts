@@ -8,7 +8,7 @@ import {BreadcrumbModule} from 'angular-crumbs';
 import { DataTableComponent } from './data-table/data-table.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoursesComponent } from './page/courses/courses.component';
 import { ExaminationComponent } from './page/examination/examination.component';
 import { PlacementComponent } from './page/placement/placement.component';
@@ -31,6 +31,11 @@ import { BmmcComponent } from './page/courses/Self Finance course/bmmc/bmmc.comp
 import { PhdCommComponent } from './page/courses/Doctoral programme/phd-comm/phd-comm.component';
 import { McomComponent } from './page/courses/Post Graduation/mcom/mcom.component';
 import { YcmouComponent } from './page/courses/Distance learning/ycmou/ycmou.component';
+import { LoginFormComponent } from './Auth/login-form/login-form.component';
+import { RegistrationFormComponent } from './Auth/registration-form/registration-form.component';
+import { CommonModule } from '@angular/common';
+import { DisplayComponent } from './display/display.component';
+import { AdminloginComponent } from './Auth/adminlogin/adminlogin.component';
 
 
 @NgModule({
@@ -60,6 +65,10 @@ import { YcmouComponent } from './page/courses/Distance learning/ycmou/ycmou.com
     PhdCommComponent,
     McomComponent,
     YcmouComponent,
+    LoginFormComponent,
+    RegistrationFormComponent,
+    DisplayComponent,
+    AdminloginComponent
     
 
   ],
@@ -69,7 +78,9 @@ import { YcmouComponent } from './page/courses/Distance learning/ycmou/ycmou.com
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    FormsModule,
+    CommonModule
 
     
   ],

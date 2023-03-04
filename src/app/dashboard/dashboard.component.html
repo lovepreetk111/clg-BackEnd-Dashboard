@@ -14,7 +14,7 @@
   <div class="left">
     <div class="sidebar">
       <div class="logo">
-       <a href=""><img src="assets/images/Chetana Logo.svg" alt=""></a> 
+       <a routerLink="/admindashboard"><img src="assets/images/Chetana-Logo.svg" alt=""></a> 
       </div>
       <div class="menu">
         <div class="img-b">
@@ -349,7 +349,7 @@
         </button>
         <ul class="dropdown-menu">
           <li><a href="">Message</a></li>
-          <li><a href="">LogOut</a></li>
+          <li><a href="/auth/admin/login">LogOut</a></li>
         </ul>
       </div>
       <div class="btn-group">
@@ -358,8 +358,8 @@
           <img src="assets/images/usersquare.svg" alt="">
         </button>
         <ul class="dropdown-menu">
-          <li><a href="">Profile</a></li>
-          <li><a href="">LogOut</a></li>
+          <li><a href="auth/superadminlogin">SuperAdmin Login</a></li>
+          <li><a routerLink="/auth/admin/login">LogOut</a></li>
         </ul>
       </div>
     </header>

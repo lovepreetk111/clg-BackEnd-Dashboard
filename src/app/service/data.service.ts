@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Ibackground, IBannerCarosuelComponent, IPlacementComponent, IResearchComponent } from './data.interface';
+import { Ibackground, IBannerCarosuelComponent, Iloginuser, IPlacementComponent, Iregistration, IResearchComponent } from './data.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -129,9 +129,28 @@ deletePlacementData(id: string) {
   }))
 }
 
-// ==================================================================================
+// ======================================Auth Module============================================================
+
+// getlogin(){
+  //   return this.http.get<Iloginuser[]>(`${this.apiUrl}login`).pipe(map((res:any)=>{
+  //     return res;
+  //   }))
+  // }
+
+postlogin(data: Iloginuser): Observable<Iloginuser> {
+  return this.http.post<Iloginuser>(`${this.apiUrl}login`,data);
+}
+
+getregister(){
+  return this.http.get<Iregistration[]>(`${this.apiUrl}register`).pipe(map((res:any)=>{
+    return res;
+  }))
+}
 
 
+postregister(data: Iregistration): Observable<Iregistration> {
+  return this.http.post<Iregistration>(`${this.apiUrl}register`,data);
+}
 
 }
  
