@@ -38,7 +38,7 @@ import { CommonModule } from '@angular/common';
 import { DisplayComponent } from './display/display.component';
 import { AdminloginComponent } from './Auth/adminlogin/adminlogin.component';
 import {TableModule} from 'primeng/table';
-
+// import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -85,7 +85,6 @@ import {TableModule} from 'primeng/table';
     CommonModule,
     TableModule,
     ButtonModule
-
     
   ],
   providers: [],

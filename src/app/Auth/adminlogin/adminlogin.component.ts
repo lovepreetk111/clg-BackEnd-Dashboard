@@ -8,24 +8,30 @@ import { DataService } from 'src/app/service/data.service';
   styleUrls: ['./adminlogin.component.scss']
 })
 export class AdminloginComponent implements OnInit {
-
-  allRegister:Iregistration[] = []
-  constructor(private data: DataService) { }
+  allRegisterData: Iregistration[] = []
+  // dar: any;
+  constructor(private data:DataService) { }
 
   ngOnInit(): void {
-  }
+   this.getRegister();
 
-  getregister() {
-    this.data.getregister().subscribe((datas) => {
-      this.allRegister = datas;
-      console.log(this.allRegister)
+  }
+  getRegister() {
+    this.data.getRegister().subscribe(res => {
+      this.allRegisterData = res;
+      // const data = res;
+      console.log(this.allRegisterData)
     })
-    console.log(this.allRegister)
   }
 
-  deleteClass(){
-
+  deleteClass(_id:string){
+  this.data.deleteRegisterData(_id).subscribe((res)=>{
+    console.log(res,'delete')
+    this.getRegister();
+  })
   }
-
+  
 
 }
+
+
