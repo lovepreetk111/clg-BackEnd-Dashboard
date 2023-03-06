@@ -104,9 +104,9 @@ updatePlacementData(id:string,data:any) {
 
 deleteBanData(id:string){
   return this.http.delete<IBannerCarosuelComponent[]>((`${this.apiUrl}bannerData/`)+id)
-  .pipe(map((res)=>{
-    return res;
-  }))
+  // .pipe(map((res)=>{
+  //   return res;
+  // }))
 }
 deleteNoticeData(id:string){
   return this.http.delete<IBannerCarosuelComponent[]>((`${this.apiUrl}notice-config/`)+id)

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {BreadcrumbModule} from 'angular-crumbs';
 import { DataTableComponent } from './data-table/data-table.component';
-
+import { RouterModule } from '@angular/router';
 import {ButtonModule} from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -39,7 +39,7 @@ import { DisplayComponent } from './display/display.component';
 import { AdminloginComponent } from './Auth/adminlogin/adminlogin.component';
 import {TableModule} from 'primeng/table';
 // import {ButtonModule} from 'primeng/button';
-
+import { MenuModule } from 'primeng/menu';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +71,7 @@ import {TableModule} from 'primeng/table';
     RegistrationFormComponent,
     DisplayComponent,
     AdminloginComponent
+   
     
 
   ],
@@ -84,9 +85,11 @@ import {TableModule} from 'primeng/table';
     FormsModule,
     CommonModule,
     TableModule,
-    ButtonModule
+    ButtonModule,
+    MenuModule,
+    RouterModule
     
-  ],
+  ],    
   providers: [],
   bootstrap: [AppComponent]
 })
