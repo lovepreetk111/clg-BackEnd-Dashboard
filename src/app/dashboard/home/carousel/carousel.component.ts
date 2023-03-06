@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormGroupName, FormArray } from '@angular/forms';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { IBannerCarosuelComponent } from 'src/app/service/data.interface';
 import { DataService } from 'src/app/service/data.service';
+
 
 
 @Component({
@@ -20,7 +22,7 @@ export class CarouselComponent implements OnInit {
   formValue:any = FormGroup
   selectedFile: any;
   SERVER_URL = "http://localhost:3000/bannerData/upload";
-  constructor(private data: DataService, private formbuilder: FormBuilder, private http: HttpClient ) {
+  constructor(private data: DataService, private formbuilder: FormBuilder, private http: HttpClient , private confirmationService: ConfirmationService ) {
   }
 
   ngOnInit(): void {
@@ -172,10 +174,18 @@ export class CarouselComponent implements OnInit {
   // }
 
   deleteBanData(_id:string){
-    this.data.deleteBanData(_id).subscribe((res) => {
-      console.log(res, 'Data Delete Successful')
-      this.getBanData();
-    })
+
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to Delete this ?',
+      accept: () => {
+          //Actual logic to perform a confirmation
+                this.data.deleteBanData(_id).subscribe((res) => {
+                console.log(res, 'Data Delete Successful')
+                this.getBanData();
+              }
+              )
+      }
+  });
   }
 
 

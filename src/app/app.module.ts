@@ -39,8 +39,15 @@ import { DisplayComponent } from './display/display.component';
 import { AdminloginComponent } from './Auth/adminlogin/adminlogin.component';
 import {TableModule} from 'primeng/table';
 import {CheckboxModule} from 'primeng/checkbox';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
 // import {ButtonModule} from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,11 +96,14 @@ import { MenuModule } from 'primeng/menu';
     ButtonModule,
     MenuModule,
     RouterModule,
-    CheckboxModule
+    CheckboxModule,
+    ConfirmDialogModule,
+    MessagesModule,
+    MessageModule
 
     
   ],    
-  providers: [],
+  providers: [ConfirmationService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
