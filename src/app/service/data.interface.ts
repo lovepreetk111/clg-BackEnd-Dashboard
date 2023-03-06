@@ -1,4 +1,5 @@
 export interface IBannerCarosuelComponent {
+    Active: any
     _id:string
     innerData:IinnerData
     background:Ibackground

@@ -17,6 +17,7 @@ export class CarouselComponent implements OnInit {
   allBanDatas: IBannerCarosuelComponent[] = []
   AddCarousel=false
   EditCarousel=false
+  parentSelector:boolean = false
   formValue:any = FormGroup
   selectedFile: any;
   SERVER_URL = "http://localhost:3000/bannerData/upload";
@@ -216,4 +217,23 @@ export class CarouselComponent implements OnInit {
 
 
 
-}
+onChangeCheckBox($event:any){
+const id = $event.target.value;
+const isChecked = $event.target.checked;
+console.log(id, isChecked)
+this.allBanDatas = this.allBanDatas.map((d) => {
+  if(d._id == id){
+    d.Active = isChecked;
+    this.parentSelector = false;
+    return d;
+  } 
+  if(id == -1){
+    d.Active = this.parentSelector;
+    return d;
+  }
+    return d;
+
+});
+console.log(this.allBanDatas)
+
+}}

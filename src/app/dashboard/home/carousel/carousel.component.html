@@ -213,7 +213,11 @@
                 <th>MODIFIED BY</th>
                 <th>ACTION</th>
                 <th style="width: 4rem">
-                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    <input class="form-check-input" type="checkbox" 
+                    [(ngModel)]="parentSelector"
+                    [value]="-1"
+                    (change)="onChangeCheckBox($event)"
+                    style="transform: scale(1.5); height: 1em; width: 1em;">
                 </th>
         </tr>
     </ng-template>
@@ -278,7 +282,13 @@
                     
                 </div>
             </td>
-           <td><p-tableCheckbox [value]="allBanDatas"></p-tableCheckbox></td>
+           <td>
+            <input class="form-check-input" type="checkbox" 
+            [checked]="allBanDatas.Active"
+            [value]="allBanDatas._id"
+            (change)="onChangeCheckBox($event)"
+            style="transform: scale(1.5); height: 1em; width: 1em;">
+        </td>
         </tr>
     </ng-template>
     <ng-template pTemplate="emptymessage">
