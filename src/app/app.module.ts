@@ -38,6 +38,7 @@ import { CommonModule } from '@angular/common';
 import { DisplayComponent } from './display/display.component';
 import { AdminloginComponent } from './Auth/adminlogin/adminlogin.component';
 import {TableModule} from 'primeng/table';
+import {CheckboxModule} from 'primeng/checkbox';
 // import {ButtonModule} from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 @NgModule({
@@ -87,7 +88,9 @@ import { MenuModule } from 'primeng/menu';
     TableModule,
     ButtonModule,
     MenuModule,
-    RouterModule
+    RouterModule,
+    CheckboxModule
+
     
   ],    
   providers: [],
