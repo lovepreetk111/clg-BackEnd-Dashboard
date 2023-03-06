@@ -182,6 +182,7 @@ export class CarouselComponent implements OnInit {
           //Actual logic to perform a confirmation
           const datadelete = this.allBanDatas.length;
           if(datadelete === 1){
+            
                 alert("You Can't delete this data atleast 1 data should be present")
               }else
                 this.data.deleteBanData(_id).subscribe((res) => {
