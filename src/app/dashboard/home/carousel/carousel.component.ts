@@ -13,6 +13,7 @@ import { DataService } from 'src/app/service/data.service';
 export class CarouselComponent implements OnInit {
 
   // allBanData!: IBannerCarosuelComponent;
+  // selectedCars:IBannerCarosuelComponent[] = [];
   allBanDatas: IBannerCarosuelComponent[] = []
   AddCarousel=false
   EditCarousel=false

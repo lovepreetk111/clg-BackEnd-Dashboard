@@ -194,8 +194,8 @@
 
 
    
-    <p-table #dt1 responsiveLayout="stack" [value]="allBanDatas" dataKey="id" [rows]="5"
-    [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]"
+    <p-table #dt1 responsiveLayout="stack"   [value]="allBanDatas" dataKey="id" [rows]="5"
+    [showCurrentPageReport]="true" selectionMode="multiple" [rowsPerPageOptions]="[5,10,15]"  [rowHover]="true"
     styleClass="p-datatable-customers p-datatable-gridlines" [paginator]="true"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
    
@@ -212,6 +212,9 @@
                 <th>MODIFIED ON</th>
                 <th>MODIFIED BY</th>
                 <th>ACTION</th>
+                <th style="width: 4rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-allBanDatas>
@@ -268,56 +271,14 @@
                 
                     <div class="delete">
                        
-                        <button pButton pRipple type="button" class="btn module-button"  label="Delete" (click)="deleteBanData(allBanDatas._id)"  class="p-button-danger"></button>
-                       
+                        <button pButton pRipple type="button" m-4rem class="btn module-button"  label="Delete" (click)="deleteBanData(allBanDatas._id)"  class="p-button-danger"></button>
+                        &nbsp;  &nbsp;                       <button  pButton pRipple type="button" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop2" icon="pi pi-pencil" (click)="AddFlag('edit')" (click)="editBanData(allBanDatas)" ></button>
                     </div>
                     
                 </div>
             </td>
-            <div class="actions">
-                <button (click)="AddFlag('edit')" (click)="editBanData(allBanDatas)" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop2"  class="btn module-button">
-                <img src="assets/images/Edit.svg" alt="">
-            </button>
-                <div class="Delete">
-                    <div class="AddFunction">
-                        <div class="popupModule">
-                           
-                            <button type="button" class="btn module-button" data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop">
-                                <img src="assets/images/Delete.svg" alt="">
-                            </button>   
-
-                          
-                            <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Warning!</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Are you shure you want to Delete this?</p>
-                                    </div>
-                                    <div class="modal-footer" >
-                                        <button type="button" class="btn btn-primary"
-                                            data-bs-dismiss="modal" (click)="deleteBanData(allBanDatas._id)">YES</button>
-                                        <button type="button" class="btn btn-danger"
-                                            data-bs-dismiss="modal" id="donotdelte">NO</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                        </div>
-                    </div>
-                </div>
-
-                <input type="checkbox" data-bs-toggle="tooltip" data-bs-placement="top"
-                    title="To Display Content on Frontend">
-            </div>
+           <td><p-tableCheckbox [value]="allBanDatas"></p-tableCheckbox></td>
         </tr>
     </ng-template>
     <ng-template pTemplate="emptymessage">
