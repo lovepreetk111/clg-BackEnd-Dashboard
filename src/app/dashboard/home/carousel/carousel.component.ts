@@ -12,7 +12,7 @@ import { DataService } from 'src/app/service/data.service';
 })
 export class CarouselComponent implements OnInit {
 
-  allBanData!: IBannerCarosuelComponent;
+  // allBanData!: IBannerCarosuelComponent;
   allBanDatas: IBannerCarosuelComponent[] = []
   AddCarousel=false
   EditCarousel=false
@@ -134,19 +134,17 @@ export class CarouselComponent implements OnInit {
   }
 
     postBanData() {
-    // this.allBanDatas = this.formValue.value;
-    // console.log(this.allBanDatas)
-    // this.data.postBanData(this.formValue.value)
-    //   .subscribe((res: any) => {
-    //     console.log(res)
-    //     this.formValue.reset()
-    //     alert("Data Added")
-    //     let ref = document.getElementById('cancel')
-    //     ref?.click();
-    //     this.getBanData()
+    this.data.postBanData(this.formValue.value)
+      .subscribe((res: any) => {
+        console.log(res)
+        this.formValue.reset()
+        alert("Data Added")
+        let ref = document.getElementById('cancel')
+        ref?.click();
+        this.getBanData()
        
-    //   })
-    this.uploadImg();
+      })
+    // this.uploadImg();
 
 
 
@@ -154,31 +152,33 @@ export class CarouselComponent implements OnInit {
     console.log(this.allBanDatas)
   }
 
-/*   deleteBanData(item: any) {
-    console.log("ID", item)
-    this.data.deleteBanData(item._id).subscribe(res => {
-      alert("Data Deleted")
-      this.getBanData();
-    })
-  } */
 
 
-  deleteBanData(item: any) {
-    const datadelete = this.allBanDatas.length;
-    if(datadelete === 1){
-      alert("You Can't delete this data atleast 1 data should be present")
-    }
-    else{
-      console.log( this.allBanData)
-    this.data.deleteBanData(item._id).subscribe(() => {
-      alert("Data Deleted")
-      this.getBanData();
+
+  // deleteBanData(item: any) {
+  //   const datadelete = this.allBanDatas.length;
+  //   if(datadelete === 1){
+  //     alert("You Can't delete this data atleast 1 data should be present")
+  //   }
+  //   else{
+
+  //   this.data.deleteBanData(item._id).subscribe(() => {
+  //     alert("Data Deleted")
+  //     this.getBanData();
       
+  //   })
+  //   }
+  // }
+
+  deleteBanData(_id:string){
+    this.data.deleteBanData(_id).subscribe((res) => {
+      console.log(res, 'Data Delete Successful')
+      this.getBanData();
     })
-    }
   }
 
 
+  //Upload Image
   onFileSelect(event:any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -212,5 +212,7 @@ export class CarouselComponent implements OnInit {
 
 
 }
+
+
 
 }

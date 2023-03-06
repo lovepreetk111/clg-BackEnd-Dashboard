@@ -1,5 +1,5 @@
 export interface IBannerCarosuelComponent {
-    // id:string
+    _id:string
     innerData:IinnerData
     background:Ibackground
     image:Iimage[]
@@ -33,7 +33,7 @@ export interface IcarouselInfo{
 } */
 
 export interface INoticeConfig {
-    _id:string
+    // _id:string
     noticeTitle: string
     noticeDate: string
     noticeName: string

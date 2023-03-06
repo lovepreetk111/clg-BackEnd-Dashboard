@@ -32,7 +32,7 @@ const routes: Routes = [
   
   {
     path:'auth/admin/register',component:RegistrationFormComponent ,
-   
+    
   },
   {
     path:'auth/admin/login',component:LoginFormComponent ,
@@ -43,93 +43,135 @@ const routes: Routes = [
    
   },
   {
+    
     path:'admindashboard',component:DashboardComponent ,
+    data:{breadcrumb:'Dashboard'},
+    
     children: [
       {
-        path:'home/carousel',component:CarouselComponent,
-       
+        path:'home',component:CarouselComponent,
+        data:{breadcrumb:'Home'}
       },
       {
         path:'home/carousel',component:CarouselComponent ,
+        data:{breadcrumb:'Home/carousel'}
        
       },
       {
         path:'home/aboutchetana',component:AboutchetanaComponent,
+        data:{breadcrumb:'Home/About'}
     
       },
       {
         path:'home/academics',component:AcademicsComponent,
+        data:{breadcrumb:'Home/academics'}
        
       },
       {
         path:'home/campus',component:CampusComponent,
+        data:{breadcrumb:'Home/campus'}
+
        },
       {
-        path:'home/testimonials',component:TestimonialsComponent
+        path:'home/testimonials',component:TestimonialsComponent,
+        data:{breadcrumb:'Home/testimonial'}
+
       },
       {
-        path:'notice', component:NoticeComponent
+        path:'notice', component:NoticeComponent,
+        data:{breadcrumb:'notice'}
+
       },
       {
-        path:'page/courses', component:CoursesComponent
+        path:'page/courses', component:CoursesComponent,
+        data:{breadcrumb:'page/course'}
       },
       {
-        path:'page/examination', component:ExaminationComponent
+        path:'page/examination', component:ExaminationComponent,
+        data:{breadcrumb:'page/examination'}
       },
       {
-        path:'page/placement', component:PlacementComponent
+        path:'page/placement', component:PlacementComponent,
+        data:{breadcrumb:'page/placement'}
+
       },
       {
-        path:'page/research', component:ResearchComponent
+        path:'page/research', component:ResearchComponent,
+        data:{breadcrumb:'page/research'}
+        
       },
       {
-        path:'page/studentscorner', component:StudentscornerComponent
+        path:'page/studentscorner', component:StudentscornerComponent,
+        data:{breadcrumb:'page/studentscorner'}
+
       },
       // junior
       {
-        path:'page/courses/junior/fyjc', component:FyjcComponent
+        path:'page/courses/junior/fyjc', component:FyjcComponent,
+        data:{breadcrumb:'page/courses/junior/fyjc'}
+
       },
       {
-        path:'page/courses/junior/syjc', component:SyjcComponent
+        path:'page/courses/junior/syjc', component:SyjcComponent,
+        data:{breadcrumb:'page/courses/junior/syjc'}
+
       },
       // degree
       {
-        path:'page/courses/degree/ba', component:BaComponent
+        path:'page/courses/degree/ba', component:BaComponent,
+        data:{breadcrumb:'page/courses/degree/ba'}
+        
       },
       {
-        path:'page/courses/degree/bcom', component:BcomComponent
+        path:'page/courses/degree/bcom', component:BcomComponent,
+        data:{breadcrumb:'page/courses/degree/bcom'}
+
       },
     
       // sfc
       {
-        path:'page/courses/sfc/bscit', component:BscitComponent
+        path:'page/courses/sfc/bscit', component:BscitComponent,
+        data:{breadcrumb:'page/courses/sfc/bscit'}
+
       },
       {
-        path:'page/courses/sfc/bms', component:BmsComponent
+        path:'page/courses/sfc/bms', component:BmsComponent,
+        data:{breadcrumb:'page/courses/sfc/bms'}
+
       },
       {
-        path:'page/courses/sfc/baf', component:BafComponent
+        path:'page/courses/sfc/baf', component:BafComponent,
+        data:{breadcrumb:'page/courses/sfc/baf'}
+
       },
       {
-        path:'page/courses/sfc/bmmc', component:BmmcComponent
+        path:'page/courses/sfc/bmmc', component:BmmcComponent,
+        data:{breadcrumb:'page/courses/sfc/bmmc'}
+        
       },
     
       // PG
     
       {
-        path:'page/courses/pg/mcom', component:McomComponent
+        path:'page/courses/pg/mcom', component:McomComponent,
+        data:{breadcrumb:'page/courses/pg/mcom'}
+
       },
     
       //doctoral 
     
       {
-        path:'page/courses/doctoralprogramme/phd', component:PhdCommComponent
+        path:'page/courses/doctoralprogramme/phd', component:PhdCommComponent,
+        data:{breadcrumb:'page/courses/doctoralprogramme/phd'}
+
       },
     
       //distance
     
       {
-        path:'page/courses/distancelearning/ycmou', component:YcmouComponent
+        path:'page/courses/distancelearning/ycmou', component:YcmouComponent,
+        data:{breadcrumb:'page/courses/distancelearning/ycmou'}
+
       },
       ]
   },
