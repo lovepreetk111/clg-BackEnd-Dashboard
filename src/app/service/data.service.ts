@@ -17,10 +17,13 @@ export class DataService {
   // ============================================ GET METHODS ===========================================================
 
 
-  getBanData(){
-    return this.http.get<IBannerCarosuelComponent[]>(`${this.apiUrl}bannerData`).pipe(map((res:any)=>{
-      return res;
-    }))
+  getBanData() {
+    return this.http.get<IBannerCarosuelComponent[]>(`${this.apiUrl}bannerData`).pipe(
+      map((res:any) => {
+        console.log(res);
+        return res;
+      })
+    );
   }
   
   getNoticeData(){
@@ -53,6 +56,11 @@ export class DataService {
 } */
 postBanData(data:IBannerCarosuelComponent):Observable<any>{
 return this.http.post<IBannerCarosuelComponent>((`${this.apiUrl}bannerData`),data)
+} 
+
+saveBannerData(bannerData: IBannerCarosuelComponent[] ): Observable<IBannerCarosuelComponent[]> {
+  const url = `${this.apiUrl}bannerData/data`;
+  return this.http.post<IBannerCarosuelComponent[]>(url, bannerData);
 }
 
 postNoticeData(data:IBannerCarosuelComponent):Observable<any>{
@@ -68,6 +76,10 @@ postResearchData(data:IResearchComponent):Observable<any> {
     return this.http.post<IPlacementComponent>((`${this.apiUrl}placementData`),data)
   }
 
+
+  
+
+  
 // ================================================== UPDATE METHODS =====================================================
 
 
@@ -157,6 +169,12 @@ getRegister(){
 postregister(data: Iregistration): Observable<Iregistration> {
   return this.http.post<Iregistration>(`${this.apiUrl}register`,data);
 }
+
+
+
+
+
+
 
 }
  
