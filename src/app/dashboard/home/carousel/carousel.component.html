@@ -286,7 +286,7 @@
            <td>
             <input class="form-check-input" type="checkbox" 
             [checked]="allBanDatas.Active"
-            [value]="allBanDatas._id"
+            [value]="allBanDatas._id.toString()"
             (change)="onChangeCheckBox($event)"
             style="transform: scale(1.5); height: 1em; width: 1em;">
         </td>

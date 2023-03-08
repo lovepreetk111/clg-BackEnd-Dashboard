@@ -31,7 +31,7 @@ export class CarouselComponent implements OnInit {
     this.formValue = this.formbuilder.group(
       {
        
-          profile:[''],
+          // profile:[''],
       
         innerData: this.formbuilder.array([
           this.formbuilder.group(
@@ -83,10 +83,15 @@ export class CarouselComponent implements OnInit {
     }
   }
   getBanData() {
-    this.data.getBanData().subscribe((datas: IBannerCarosuelComponent[]) => {
-      this.allBanDatas = datas;
-      console.log(datas)
-    })
+    this.data.getBanData().subscribe(
+      (datas: IBannerCarosuelComponent[]) => {
+        this.allBanDatas = datas;
+        console.log('allBanDatas:', this.allBanDatas);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
   editBanData(item: any) {
     // this.formValue.controls['innerData'].setValue(item.header[0])
@@ -227,23 +232,46 @@ export class CarouselComponent implements OnInit {
 
 
 
-onChangeCheckBox($event:any){
-const id = $event.target.value;
-const isChecked = $event.target.checked;
-console.log(id, isChecked)
-this.allBanDatas = this.allBanDatas.map((d) => {
-  if(d._id == id){
-    d.Active = isChecked;
-    this.parentSelector = false;
-    return d;
-  } 
-  if(id == -1){
-    d.Active = this.parentSelector;
-    return d;
-  }
-    return d;
+onChangeCheckBox($event: any) {
+  const id = $event.target.value;
+  const isChecked = $event.target.checked;
 
-});
-console.log(this.allBanDatas)
+  console.log('id:', id);
+  console.log('isChecked:', isChecked);
 
-}}
+  console.log('allBanDatas:', this.allBanDatas);
+
+  this.allBanDatas = this.allBanDatas.map((d) => {
+    console.log('_id:', d._id);
+    if (d._id === id) {
+      d.Active = isChecked;
+      this.parentSelector = false;
+      return d;
+    }
+
+    if (id === '-1') {
+      d.Active = this.parentSelector;
+      return d;
+    }
+
+    return d;
+  });
+
+  console.log('modified allBanDatas:', this.allBanDatas);
+
+  this.data.saveBannerData( this.allBanDatas ).subscribe(
+    (res) => {
+      console.log(res);
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+}
+
+
+
+
+
+
+}

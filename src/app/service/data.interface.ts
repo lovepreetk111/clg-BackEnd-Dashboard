@@ -1,5 +1,5 @@
 export interface IBannerCarosuelComponent {
-    Active: any
+   
     _id:string
     innerData:IinnerData
     background:Ibackground
@@ -8,6 +8,7 @@ export interface IBannerCarosuelComponent {
     carouselDetails:IcarouselInfo[]
     createdAt:string
     updatedAt:string
+    Active: boolean
 }
 
 
