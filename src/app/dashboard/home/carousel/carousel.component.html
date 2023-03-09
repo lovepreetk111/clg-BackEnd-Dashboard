@@ -1,3 +1,14 @@
+<breadcrumb #parent>
+    <ol class="breadcrumb">
+     <ng-template ngFor let-route [ngForOf]="parent.breadcrumbs">
+        <li *ngIf="!route.terminal" class="breadcrumb-item">
+<a href="" [routerLink]="[route.url]">{{route.displayName}}</a>
+        </li>
+        <li *ngIf="route.terminal" class="breadcrumb-item active">{{route.displayName}}</li>
+
+     </ng-template>
+    </ol>
+</breadcrumb>
 <div class="Header">
     <div class="PageName">
         <p>Carousel</p>
@@ -68,7 +79,7 @@
                                         placeholder="Enter Background alt">
                                     </ng-container>
                                 </div>
-                                <div formGroupName="image">
+                                <!-- <div formGroupName="image">
                                     <ng-container formArrayName="0"> 
                                     <label for="Image">Background Image</label>
                                     <button onclick="document.getElementById('profile').click()">Select an
@@ -76,7 +87,7 @@
                                     <input type='file' formControlName="profile" id="profile" style="display:none"
                                     name="profile" (change)="onFileSelect($event)" />
                                     </ng-container>
-                                </div>
+                                </div> -->
                                 <div formGroupName="image">
                                     <ng-container formArrayName="0"> 
                                     <label for="CarouselHeader">Image Alt</label>
@@ -109,7 +120,7 @@
 
 <div class="DataTable">
     
-    <table>
+     <!-- <table>
         <thead class="head">
             <tr class="TableHeader">
                 <th>IMAGE</th>
@@ -121,11 +132,11 @@
                 <th>ACTION</th>
             </tr>
         </thead>
-        <tr *ngFor="let item of allBanDatas">
+        <tr *ngFor="let item of allBanDatas" let i = "index">
             <td *ngIf="item.image">
                 <img [src]="item.image[0].url" [alt]="item.image[0].alt">
             </td>
-            <!-- {{item | json}} -->
+           
             <td>{{item.carouselDetails[0].name}}</td>
             <td>{{item.createdAt | date:"dd/MM/yyyy"}}</td>
             <td></td>
@@ -140,13 +151,13 @@
                     <div class="Delete">
                         <div class="AddFunction">
                             <div class="popupModule">
-                                <!-- Button trigger modal -->
+                               
                                 <button type="button" class="btn module-button" data-bs-toggle="modal"
                                     data-bs-target="#staticBackdrop">
                                     <img src="assets/images/Delete.svg" alt="">
                                 </button>   
 
-                                <!-- Modal -->
+                              
                                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
                                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                 aria-hidden="true">
@@ -162,7 +173,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-primary"
-                                                data-bs-dismiss="modal" (click)="deleteBanData(item)">YES</button>
+                                                data-bs-dismiss="modal" (click)="deleteBanData(item._id)">YES</button>
                                             <button type="button" class="btn btn-danger"
                                                 data-bs-dismiss="modal" id="donotdelte">NO</button>
                                         </div>
@@ -178,8 +189,121 @@
                 </div>
             </td>
         </tr>
-    </table>
-    <div class="pagination">
+    </table>  -->
+
+
+
+   
+    <p-table #dt1 responsiveLayout="stack"   [value]="allBanDatas" dataKey="id" [rows]="5"
+    [showCurrentPageReport]="true" selectionMode="multiple" [rowsPerPageOptions]="[5,10,15]"  [rowHover]="true"
+    styleClass="p-datatable-customers p-datatable-gridlines" [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+   
+    <ng-template pTemplate="caption" >
+        
+    </ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>IMAGE</th>
+                <th>NAME</th>
+                <th>CREATED ON</th>
+                <th>CREATED BY</th>
+                <th>MODIFIED ON</th>
+                <th>MODIFIED BY</th>
+                <th>ACTION</th>
+                <th style="width: 4rem">
+                    <input class="form-check-input" type="checkbox" 
+                    [(ngModel)]="parentSelector"
+                    [value]="-1"
+                    (change)="onChangeCheckBox($event)"
+                    style="transform: scale(1.5); height: 1em; width: 1em;">
+                </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-allBanDatas>
+       
+        <tr>
+            <td *ngIf="allBanDatas.image">
+                <img [src]="allBanDatas.image[0].url" [alt]="allBanDatas.image[0].alt">
+            </td>
+           
+            <td>{{allBanDatas.carouselDetails[0].name}}</td>
+            <td>{{allBanDatas.createdAt | date:"dd/MM/yyyy"}}</td>
+            <td></td>
+            <td>{{allBanDatas.updatedAt | date:"dd/MM/yyyy"}}</td>
+            <td></td>
+            <td><span class="p-column-title">Options</span>
+                <div class="editGrp">
+
+
+                    <div class="modal fade" id="staticBackdrop" >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Warning!</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you shure you want to Delete this?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary"
+                                    data-bs-dismiss="modal" >YES</button>
+                                <button type="button" class="btn btn-danger"
+                                    data-bs-dismiss="modal" id="donotdelte">NO</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+      
+
+
+
+               
+
+                    
+
+                    
+
+                
+      <p-confirmDialog header="Delete" ></p-confirmDialog>
+                    <div class="delete">
+                       
+                        <button pButton pRipple type="button" m-4rem class="btn module-button"  label="Delete" (click)="deleteBanData(allBanDatas._id)"  class="p-button-danger"></button>
+                        &nbsp;  &nbsp;                       <button  pButton pRipple type="button" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop2" icon="pi pi-pencil" id="edit" (click)="AddFlag('edit')" (click)="editBanData(allBanDatas)" ></button>
+                    </div>
+                    
+                </div>
+            </td>
+           <td>
+            <input class="form-check-input" type="checkbox" 
+            [checked]="allBanDatas.Active"
+            [value]="allBanDatas._id.toString()"
+            (change)="onChangeCheckBox($event)"
+            style="transform: scale(1.5); height: 1em; width: 1em;">
+        </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="7">No customers found.</td>
+        </tr>
+    </ng-template>
+      </p-table>
+
+
+
+
+
+    <!-- <div class="pagination">
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -189,5 +313,5 @@
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
             </ul>
         </nav>
-    </div>
+    </div> -->
 </div>

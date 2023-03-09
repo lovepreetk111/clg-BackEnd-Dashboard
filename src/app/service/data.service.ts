@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Ibackground, IBannerCarosuelComponent, IPlacementComponent, IResearchComponent } from './data.interface';
+import { Ibackground, IBannerCarosuelComponent, Iloginuser, IPlacementComponent, Iregistration, IResearchComponent } from './data.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +17,13 @@ export class DataService {
   // ============================================ GET METHODS ===========================================================
 
 
-  getBanData(){
-    return this.http.get<IBannerCarosuelComponent[]>(`${this.apiUrl}bannerData`).pipe(map((res:any)=>{
-      return res;
-    }))
+  getBanData() {
+    return this.http.get<IBannerCarosuelComponent[]>(`${this.apiUrl}bannerData`).pipe(
+      map((res:any) => {
+        console.log(res);
+        return res;
+      })
+    );
   }
   
   getNoticeData(){
@@ -53,6 +56,11 @@ export class DataService {
 } */
 postBanData(data:IBannerCarosuelComponent):Observable<any>{
 return this.http.post<IBannerCarosuelComponent>((`${this.apiUrl}bannerData`),data)
+} 
+
+saveBannerData(bannerData: IBannerCarosuelComponent[] ): Observable<IBannerCarosuelComponent[]> {
+  const url = `${this.apiUrl}bannerData/data`;
+  return this.http.post<IBannerCarosuelComponent[]>(url, bannerData);
 }
 
 postNoticeData(data:IBannerCarosuelComponent):Observable<any>{
@@ -68,6 +76,10 @@ postResearchData(data:IResearchComponent):Observable<any> {
     return this.http.post<IPlacementComponent>((`${this.apiUrl}placementData`),data)
   }
 
+
+  
+
+  
 // ================================================== UPDATE METHODS =====================================================
 
 
@@ -104,9 +116,9 @@ updatePlacementData(id:string,data:any) {
 
 deleteBanData(id:string){
   return this.http.delete<IBannerCarosuelComponent[]>((`${this.apiUrl}bannerData/`)+id)
-  .pipe(map((res)=>{
-    return res;
-  }))
+  // .pipe(map((res)=>{
+  //   return res;
+  // }))
 }
 deleteNoticeData(id:string){
   return this.http.delete<IBannerCarosuelComponent[]>((`${this.apiUrl}notice-config/`)+id)
@@ -129,7 +141,38 @@ deletePlacementData(id: string) {
   }))
 }
 
-// ==================================================================================
+deleteRegisterData(id:string){
+  return this.http.delete<Iregistration[]>((`${this.apiUrl}`)+id)
+}
+
+// ======================================Auth Module============================================================
+
+// getlogin(){
+  //   return this.http.get<Iloginuser[]>(`${this.apiUrl}login`).pipe(map((res:any)=>{
+  //     return res;
+  //   }))
+  // }
+
+postlogin(data: Iloginuser): Observable<Iloginuser> {
+  return this.http.post<Iloginuser>(`${this.apiUrl}login`,data);
+}
+
+getRegister(){
+  return this.http.get<Iregistration[]>(`${this.apiUrl}register`).pipe(map((res:any)=>{
+    return res;
+  }))
+}
+
+
+
+
+postregister(data: Iregistration): Observable<Iregistration> {
+  return this.http.post<Iregistration>(`${this.apiUrl}register`,data);
+}
+
+
+
+
 
 
 

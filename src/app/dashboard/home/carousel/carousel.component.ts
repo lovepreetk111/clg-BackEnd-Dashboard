@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormGroupName, FormArray } from '@angular/forms';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { IBannerCarosuelComponent } from 'src/app/service/data.interface';
 import { DataService } from 'src/app/service/data.service';
+
 
 
 @Component({
@@ -12,14 +14,16 @@ import { DataService } from 'src/app/service/data.service';
 })
 export class CarouselComponent implements OnInit {
 
-  allBanData!: IBannerCarosuelComponent;
+  // allBanData!: IBannerCarosuelComponent;
+  // selectedCars:IBannerCarosuelComponent[] = [];
   allBanDatas: IBannerCarosuelComponent[] = []
   AddCarousel=false
   EditCarousel=false
+  parentSelector:boolean = false
   formValue:any = FormGroup
   selectedFile: any;
   SERVER_URL = "http://localhost:3000/bannerData/upload";
-  constructor(private data: DataService, private formbuilder: FormBuilder, private http: HttpClient ) {
+  constructor(private data: DataService, private formbuilder: FormBuilder, private http: HttpClient , private confirmationService: ConfirmationService ) {
   }
 
   ngOnInit(): void {
@@ -27,7 +31,7 @@ export class CarouselComponent implements OnInit {
     this.formValue = this.formbuilder.group(
       {
        
-          profile:[''],
+          // profile:[''],
       
         innerData: this.formbuilder.array([
           this.formbuilder.group(
@@ -79,10 +83,15 @@ export class CarouselComponent implements OnInit {
     }
   }
   getBanData() {
-    this.data.getBanData().subscribe((datas: IBannerCarosuelComponent[]) => {
-      this.allBanDatas = datas;
-      console.log(datas)
-    })
+    this.data.getBanData().subscribe(
+      (datas: IBannerCarosuelComponent[]) => {
+        this.allBanDatas = datas;
+        console.log('allBanDatas:', this.allBanDatas);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
   editBanData(item: any) {
     // this.formValue.controls['innerData'].setValue(item.header[0])
@@ -134,19 +143,17 @@ export class CarouselComponent implements OnInit {
   }
 
     postBanData() {
-    // this.allBanDatas = this.formValue.value;
-    // console.log(this.allBanDatas)
-    // this.data.postBanData(this.formValue.value)
-    //   .subscribe((res: any) => {
-    //     console.log(res)
-    //     this.formValue.reset()
-    //     alert("Data Added")
-    //     let ref = document.getElementById('cancel')
-    //     ref?.click();
-    //     this.getBanData()
+    this.data.postBanData(this.formValue.value)
+      .subscribe((res: any) => {
+        console.log(res)
+        this.formValue.reset()
+        alert("Data Added")
+        let ref = document.getElementById('cancel')
+        ref?.click();
+        this.getBanData()
        
-    //   })
-    this.uploadImg();
+      })
+    // this.uploadImg();
 
 
 
@@ -154,31 +161,48 @@ export class CarouselComponent implements OnInit {
     console.log(this.allBanDatas)
   }
 
-/*   deleteBanData(item: any) {
-    console.log("ID", item)
-    this.data.deleteBanData(item._id).subscribe(res => {
-      alert("Data Deleted")
-      this.getBanData();
-    })
-  } */
 
 
-  deleteBanData(item: any) {
-    const datadelete = this.allBanDatas.length;
-    if(datadelete === 1){
-      alert("You Can't delete this data atleast 1 data should be present")
-    }
-    else{
-      console.log( this.allBanData)
-    this.data.deleteBanData(item._id).subscribe(() => {
-      alert("Data Deleted")
-      this.getBanData();
+
+  // deleteBanData(item: any) {
+  //   const datadelete = this.allBanDatas.length;
+  //   if(datadelete === 1){
+  //     alert("You Can't delete this data atleast 1 data should be present")
+  //   }
+  //   else{
+
+  //   this.data.deleteBanData(item._id).subscribe(() => {
+  //     alert("Data Deleted")
+  //     this.getBanData();
       
-    })
-    }
+  //   })
+  //   }
+  // }
+
+  deleteBanData(_id:string){
+
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to Delete this ?',
+      accept: () => {
+          //Actual logic to perform a confirmation
+          const datadelete = this.allBanDatas.length;
+          if(datadelete === 1){
+            
+                alert("You Can't delete this data atleast 1 data should be present")
+              }else
+                this.data.deleteBanData(_id).subscribe((res) => {
+                console.log(res, 'Data Delete Successful')
+                this.getBanData();
+                
+              }
+              
+              )
+      }
+  });
   }
 
 
+  //Upload Image
   onFileSelect(event:any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -212,5 +236,49 @@ export class CarouselComponent implements OnInit {
 
 
 }
+
+
+
+onChangeCheckBox($event: any) {
+  const id = $event.target.value;
+  const isChecked = $event.target.checked;
+
+  console.log('id:', id);
+  console.log('isChecked:', isChecked);
+
+  console.log('allBanDatas:', this.allBanDatas);
+
+  this.allBanDatas = this.allBanDatas.map((d) => {
+    console.log('_id:', d._id);
+    if (d._id === id) {
+      d.Active = isChecked;
+      this.parentSelector = false;
+      return d;
+    }
+
+    if (id === '-1') {
+      d.Active = this.parentSelector;
+      return d;
+    }
+
+    return d;
+  });
+
+  console.log('modified allBanDatas:', this.allBanDatas);
+
+  this.data.saveBannerData( this.allBanDatas ).subscribe(
+    (res) => {
+      console.log(res);
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+}
+
+
+
+
+
 
 }

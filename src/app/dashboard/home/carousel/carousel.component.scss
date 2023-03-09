@@ -71,7 +71,7 @@
 .DataTable{
     width: 98%;
     height: 68%;
-    margin-top: 5%;
+    margin-top: 6%;
     margin-left: 1%;
     table{
         width: 100%;
@@ -198,4 +198,10 @@
             }
  }
 }
+}
+.p-button-danger , #edit{
+    border-radius: 25px;
+}
+.breadcrumb{
+    margin-left: 1rem;
 }

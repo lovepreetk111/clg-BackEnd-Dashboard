@@ -1,5 +1,6 @@
 export interface IBannerCarosuelComponent {
-    // id:string
+   
+    _id:string
     innerData:IinnerData
     background:Ibackground
     image:Iimage[]
@@ -7,6 +8,7 @@ export interface IBannerCarosuelComponent {
     carouselDetails:IcarouselInfo[]
     createdAt:string
     updatedAt:string
+    Active: boolean
 }
 
 
@@ -33,7 +35,7 @@ export interface IcarouselInfo{
 } */
 
 export interface INoticeConfig {
-    _id:string
+    // _id:string
     noticeTitle: string
     noticeDate: string
     noticeName: string
@@ -89,4 +91,15 @@ export interface IPlacementData{
     post:string
     facultyName:string
   } 
-  
+
+  //auth
+  export interface Iloginuser{
+    email:string;
+    password:string;
+}
+export interface Iregistration{
+    name:string;
+    designation:string;
+    email:string;
+    password:string;
+}

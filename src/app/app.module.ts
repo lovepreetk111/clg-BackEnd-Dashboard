@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {BreadcrumbModule} from 'angular-crumbs';
 import { DataTableComponent } from './data-table/data-table.component';
-
+import { RouterModule } from '@angular/router';
+import {ButtonModule} from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoursesComponent } from './page/courses/courses.component';
 import { ExaminationComponent } from './page/examination/examination.component';
 import { PlacementComponent } from './page/placement/placement.component';
@@ -31,6 +32,20 @@ import { BmmcComponent } from './page/courses/Self Finance course/bmmc/bmmc.comp
 import { PhdCommComponent } from './page/courses/Doctoral programme/phd-comm/phd-comm.component';
 import { McomComponent } from './page/courses/Post Graduation/mcom/mcom.component';
 import { YcmouComponent } from './page/courses/Distance learning/ycmou/ycmou.component';
+import { LoginFormComponent } from './Auth/login-form/login-form.component';
+import { RegistrationFormComponent } from './Auth/registration-form/registration-form.component';
+import { CommonModule } from '@angular/common';
+import { DisplayComponent } from './display/display.component';
+import { AdminloginComponent } from './Auth/adminlogin/adminlogin.component';
+import {TableModule} from 'primeng/table';
+import {CheckboxModule} from 'primeng/checkbox';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
+// import {ButtonModule} from 'primeng/button';
+import { MenuModule } from 'primeng/menu';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+
 
 
 @NgModule({
@@ -60,6 +75,11 @@ import { YcmouComponent } from './page/courses/Distance learning/ycmou/ycmou.com
     PhdCommComponent,
     McomComponent,
     YcmouComponent,
+    LoginFormComponent,
+    RegistrationFormComponent,
+    DisplayComponent,
+    AdminloginComponent
+   
     
 
   ],
@@ -69,11 +89,21 @@ import { YcmouComponent } from './page/courses/Distance learning/ycmou/ycmou.com
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    FormsModule,
+    CommonModule,
+    TableModule,
+    ButtonModule,
+    MenuModule,
+    RouterModule,
+    CheckboxModule,
+    ConfirmDialogModule,
+    MessagesModule,
+    MessageModule
 
     
-  ],
-  providers: [],
+  ],    
+  providers: [ConfirmationService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
