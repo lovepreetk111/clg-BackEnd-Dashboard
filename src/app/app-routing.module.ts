@@ -79,7 +79,7 @@ const routes: Routes = [
       },
       {
         path:'notice', component:NoticeComponent,
-        data:{breadcrumb:'notice'}
+        data:{breadcrumb:'notice' }
 
       },
       {

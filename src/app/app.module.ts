@@ -45,6 +45,9 @@ import {ConfirmationService} from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import {ConfirmPopupModule} from 'primeng/confirmpopup';
+import {ToastModule} from 'primeng/toast';
+import {RippleModule} from 'primeng/ripple';
 
 
 
@@ -99,7 +102,11 @@ import {MessageModule} from 'primeng/message';
     CheckboxModule,
     ConfirmDialogModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    ConfirmPopupModule,
+    ToastModule,
+    RippleModule
+    
 
     
   ],    

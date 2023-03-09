@@ -9,6 +9,7 @@
      </ng-template>
     </ol>
 </breadcrumb>
+<p-confirmDialog [style]="{width: '35vw'}"></p-confirmDialog>
 <div class="Header">
     <div class="PageName">
         <p>Carousel</p>
@@ -273,10 +274,15 @@
                     
 
                 
-      <p-confirmDialog header="Delete" ></p-confirmDialog>
-                    <div class="delete">
-                       
-                        <button pButton pRipple type="button" m-4rem class="btn module-button"  label="Delete" (click)="deleteBanData(allBanDatas._id)"  class="p-button-danger"></button>
+      
+      
+      
+      
+     
+    
+      <div class="delete">
+          
+          <button pButton pRipple type="button" m-4rem class="btn module-button"  label="Delete" (click)="deleteBanData(allBanDatas._id)"  class="p-button-danger"></button>
                         &nbsp;  &nbsp;                       <button  pButton pRipple type="button" data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop2" icon="pi pi-pencil" id="edit" (click)="AddFlag('edit')" (click)="editBanData(allBanDatas)" ></button>
                     </div>

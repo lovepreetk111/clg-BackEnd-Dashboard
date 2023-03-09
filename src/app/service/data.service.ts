@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Ibackground, IBannerCarosuelComponent, Iloginuser, IPlacementComponent, Iregistration, IResearchComponent } from './data.interface';
+import { Ibackground, IBannerCarosuelComponent, Iloginuser, INoticeConfig, IPlacementComponent, Iregistration, IResearchComponent } from './data.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -63,6 +63,16 @@ saveBannerData(bannerData: IBannerCarosuelComponent[] ): Observable<IBannerCaros
   return this.http.post<IBannerCarosuelComponent[]>(url, bannerData);
 }
 
+saveNoticeData(noticeData: INoticeConfig[] ): Observable<INoticeConfig[]> {
+  const url = `${this.apiUrl}noticeData/data`;
+  return this.http.post<INoticeConfig[]>(url, noticeData);
+}
+
+saveRegisterData(registerData: Iregistration[] ): Observable<Iregistration[]> {
+  const url = `${this.apiUrl}registerData/data`;
+  return this.http.post<Iregistration[]>(url, registerData);
+}
+
 postNoticeData(data:IBannerCarosuelComponent):Observable<any>{
   return this.http.post<IBannerCarosuelComponent>((`${this.apiUrl}notice-config`),data)
   }
@@ -116,9 +126,9 @@ updatePlacementData(id:string,data:any) {
 
 deleteBanData(id:string){
   return this.http.delete<IBannerCarosuelComponent[]>((`${this.apiUrl}bannerData/`)+id)
-  // .pipe(map((res)=>{
-  //   return res;
-  // }))
+  .pipe(map((res)=>{
+    return res;
+  }))
 }
 deleteNoticeData(id:string){
   return this.http.delete<IBannerCarosuelComponent[]>((`${this.apiUrl}notice-config/`)+id)

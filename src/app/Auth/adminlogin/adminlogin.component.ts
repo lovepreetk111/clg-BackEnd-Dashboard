@@ -9,6 +9,7 @@ import { DataService } from 'src/app/service/data.service';
 })
 export class AdminloginComponent implements OnInit {
   allRegisterData: Iregistration[] = []
+  parentSelector:boolean = false
   // dar: any;
   constructor(private data:DataService) { }
 
@@ -29,6 +30,43 @@ export class AdminloginComponent implements OnInit {
     console.log(res,'delete')
     this.getRegister();
   })
+  }
+
+  onChangeCheckBox($event: any) {
+    const id = $event.target.value;
+    const isChecked = $event.target.checked;
+  
+    console.log('id:', id);
+    console.log('isChecked:', isChecked);
+  
+    console.log('allRegisterData:', this.allRegisterData);
+  
+    this.allRegisterData = this.allRegisterData.map((d) => {
+      console.log('_id:', d._id);
+      if (d._id === id) {
+        d.Active = isChecked;
+        this.parentSelector = false;
+        return d;
+      }
+  
+      if (id === '-1') {
+        d.Active = this.parentSelector;
+        return d;
+      }
+  
+      return d;
+    });
+  
+    console.log('modified allRegisterData:', this.allRegisterData);
+  
+    this.data.saveRegisterData( this.allRegisterData ).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
   
 
