@@ -11,6 +11,7 @@
   </ol>
 </breadcrumb> -->
 
+
 <div class="dashboard">
   
     <div class="left">
@@ -22,7 +23,8 @@
           <div class="img-b">
           <img src="../../assets/images/useredit.png" alt="">
           <button type="button" class="btn btn-secondary" aria-expanded="false">
-            Dashboard
+            <a routerLink="/admindashboard">Dashboard</a>
+            
           </button>
         </div>
           <div class="btn-group dropend">
@@ -352,7 +354,7 @@
         </button>
         <ul class="dropdown-menu">
           <li><a href="">Message</a></li>
-          <li><a href="/auth/admin/login">LogOut</a></li>
+          <li><button type="button" class="btn btn-danger btn-lg"  (click)="onLogOut()">LogOut</button></li>
         </ul>
       </div>
       <div class="btn-group">
@@ -361,10 +363,11 @@
           <img src="assets/images/usersquare.svg" alt="">
         </button>
         <ul class="dropdown-menu">
-          <li><a href="auth/superadminlogin">SuperAdmin Login</a></li>
-          <li><a routerLink="/auth/admin/login">LogOut</a></li>
+          <li><a routerLink="auth/superadminlogin">SuperAdmin Login</a></li>
+          <li><button type="button" class="btn btn-danger btn-lg"  (click)="onLogOut()">LogOut</button></li>
         </ul>
       </div>
+      
     </header>
     <div>
       <router-outlet></router-outlet>
