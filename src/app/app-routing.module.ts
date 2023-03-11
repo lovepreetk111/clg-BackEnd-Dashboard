@@ -42,7 +42,7 @@ const routes: Routes = [
   },
   
   {
-    
+ 
     path:'admindashboard',component:DashboardComponent ,
     data:{breadcrumb:'Dashboard'},
     canActivate:[AuthGuard],
