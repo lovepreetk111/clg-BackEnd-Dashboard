@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminloginComponent } from './Auth/adminlogin/adminlogin.component';
+import { AuthGuard } from './Auth/auth.guard';
 import { LoginFormComponent } from './Auth/login-form/login-form.component';
 import { RegistrationFormComponent } from './Auth/registration-form/registration-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -36,16 +37,15 @@ const routes: Routes = [
   },
   {
     path:'auth/admin/login',component:LoginFormComponent ,
+    
    
   },
-  {
-    path:'auth/superadminlogin',component:AdminloginComponent ,
-   
-  },
+  
   {
     
     path:'admindashboard',component:DashboardComponent ,
     data:{breadcrumb:'Dashboard'},
+    canActivate:[AuthGuard],
     
     children: [
       {
@@ -172,6 +172,10 @@ const routes: Routes = [
         path:'page/courses/distancelearning/ycmou', component:YcmouComponent,
         data:{breadcrumb:'page/courses/distancelearning/ycmou'}
 
+      },
+      {
+        path:'auth/superadminlogin',component:AdminloginComponent ,
+       
       },
       ]
   },

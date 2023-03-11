@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
 import { Iregistration } from 'src/app/service/data.interface';
 import { DataService } from 'src/app/service/data.service';
 
@@ -11,7 +12,7 @@ export class AdminloginComponent implements OnInit {
   allRegisterData: Iregistration[] = []
   parentSelector:boolean = false
   // dar: any;
-  constructor(private data:DataService) { }
+  constructor(private data:DataService,private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
    this.getRegister();
@@ -26,11 +27,28 @@ export class AdminloginComponent implements OnInit {
   }
 
   deleteClass(_id:string){
-  this.data.deleteRegisterData(_id).subscribe((res)=>{
-    console.log(res,'delete')
-    this.getRegister();
-  })
-  }
+    this.confirmationService.confirm({
+        message: 'Are you sure that you want to perform this action?',
+        accept: () => {
+            //Actual logic to perform a confirmation
+            const datadelete = this.allRegisterData.length;
+            if(datadelete === 1){
+              alert("You Can't delete this User atleast 1 User should be present")
+            }else
+            this.data.deleteRegisterData(_id).subscribe((res)=>{
+              console.log(res,'delete')
+              this.getRegister();
+            })
+        }
+    });
+}
+
+  // deleteClass(_id:string){
+  // this.data.deleteRegisterData(_id).subscribe((res)=>{
+  //   console.log(res,'delete')
+  //   this.getRegister();
+  // })
+  // }
 
   onChangeCheckBox($event: any) {
     const id = $event.target.value;
