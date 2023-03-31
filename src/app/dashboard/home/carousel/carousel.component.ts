@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormGroupName, FormArray } from '@angular/forms';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, Message, MessageService, PrimeNGConfig } from 'primeng/api';
 import { IBannerCarosuelComponent } from 'src/app/service/data.interface';
 import { DataService } from 'src/app/service/data.service';
 
@@ -16,6 +16,9 @@ export class CarouselComponent implements OnInit {
 
   // allBanData!: IBannerCarosuelComponent;
   // selectedCars:IBannerCarosuelComponent[] = [];
+
+  msgs: Message[] = [];
+
   allBanDatas: IBannerCarosuelComponent[] = []
   AddCarousel=false
   EditCarousel=false
@@ -23,10 +26,20 @@ export class CarouselComponent implements OnInit {
   formValue:any = FormGroup
   selectedFile: any;
   SERVER_URL = "http://localhost:3000/bannerData/upload";
-  constructor(private data: DataService, private formbuilder: FormBuilder, private http: HttpClient , private confirmationService: ConfirmationService ) {
+ 
+  constructor(private data: DataService, private formbuilder: FormBuilder, private http: HttpClient , private confirmationService: ConfirmationService) {
   }
 
+
+  
+
+
+  
+// this.primengConfig.ripple = true;
   ngOnInit(): void {
+
+
+    
     this.getBanData();
     this.formValue = this.formbuilder.group(
       {
@@ -187,20 +200,21 @@ export class CarouselComponent implements OnInit {
           //Actual logic to perform a confirmation
           const datadelete = this.allBanDatas.length;
           if(datadelete === 1){
-            
                 alert("You Can't delete this data atleast 1 data should be present")
+                
               }else
                 this.data.deleteBanData(_id).subscribe((res) => {
                 console.log(res, 'Data Delete Successful')
                 this.getBanData();
                 
+                // this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
               }
               
               )
       }
   });
   }
-
+ 
 
   //Upload Image
   onFileSelect(event:any) {
