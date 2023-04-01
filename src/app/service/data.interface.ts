@@ -35,12 +35,13 @@ export interface IcarouselInfo{
 } */
 
 export interface INoticeConfig {
-    // _id:string
+    _id:string
     noticeTitle: string
     noticeDate: string
     noticeName: string
     updatedAt:string
     createdAt:string
+    Active: boolean
     innerNoticeData: IInnerNoticeData[]
     dashboardInfo: IDashboardInfo[]
 }
@@ -98,8 +99,10 @@ export interface IPlacementData{
     password:string;
 }
 export interface Iregistration{
+    _id:string
     name:string;
     designation:string;
     email:string;
     password:string;
+    Active: boolean
 }

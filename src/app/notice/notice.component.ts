@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ConfirmationService } from 'primeng/api';
 import { INoticeConfig } from 'src/app/service/data.interface';
 import { DataService } from 'src/app/service/data.service';
 @Component({
@@ -10,10 +11,11 @@ import { DataService } from 'src/app/service/data.service';
 export class NoticeComponent implements OnInit {
   allNoticeDatas: INoticeConfig[] = []
   formValue!: FormGroup
+  parentSelector:boolean = false
   AddData=false
   EditData=false
 
-  constructor(private noticeservice: DataService, private formbuilder: FormBuilder) { }
+  constructor(private noticeservice: DataService,  private formbuilder: FormBuilder,private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getNoticeData();
@@ -29,6 +31,16 @@ export class NoticeComponent implements OnInit {
             {
               img: new FormControl(''),
               noticeInfoText: new FormControl('')
+            }
+          )
+        ]),
+        noticeDetails: this.formbuilder.array([
+          this.formbuilder.group(
+            {
+              name: new FormControl(''),
+              createdBy: new FormControl(''),
+              modifiedBy: new FormControl(''),
+              description: new FormControl('')
             }
           )
         ]),
@@ -103,19 +115,64 @@ export class NoticeComponent implements OnInit {
     })
   } */
 
-  deleteNoticeData(item: any) {
-    const datadelete = this.allNoticeDatas.length;
-    if(datadelete === 1){
-      alert("You Can't delete this data atleast 1 data should be present")
-    }
-    else{
-      console.log( this.allNoticeDatas)
-    this.noticeservice.deleteBanData(item._id).subscribe(() => {
-      alert("Data Deleted")
-      this.getNoticeData();
-      
-    })
-    }
+  deleteNoticeData(_id:string){
+
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to Delete this ?',
+      accept: () => {
+          //Actual logic to perform a confirmation
+          const datadelete = this.allNoticeDatas.length;
+          if(datadelete === 1){
+            alert("You Can't delete this data atleast 1 data should be present")
+          }else
+          this.noticeservice.deleteNoticeData(_id).subscribe((res) => {
+            console.log(res , 'Data Deleted Successfully')
+            this.getNoticeData();
+            
+          })
+           
+      }
+  });
   }
+
+
+
+  onChangeCheckBox($event: any) {
+    const id = $event.target.value;
+    const isChecked = $event.target.checked;
+  
+    console.log('id:', id);
+    console.log('isChecked:', isChecked);
+  
+    console.log('allNoticeDatas:', this.allNoticeDatas);
+  
+    this.allNoticeDatas = this.allNoticeDatas.map((d) => {
+      console.log('_id:', d._id);
+      if (d._id === id) {
+        d.Active = isChecked;
+        this.parentSelector = false;
+        return d;
+      }
+  
+      if (id === '-1') {
+        d.Active = this.parentSelector;
+        return d;
+      }
+  
+      return d;
+    });
+  
+    console.log('modified allNoticeDatas:', this.allNoticeDatas);
+  
+    this.noticeservice.saveNoticeData( this.allNoticeDatas ).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
 
 }
